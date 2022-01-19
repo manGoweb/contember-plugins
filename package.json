@@ -1,0 +1,15 @@
+{
+	"name": "@mangoweb/contember-plugins",
+	"version": "0.0.0",
+	"description": "Common contember plugins.",
+	"scripts": {},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/manGoweb/contember-plugins.git"
+	},
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/manGoweb/contember-plugins/issues"
+	},
+	"homepage": "https://github.com/manGoweb/contember-plugins#readme"
+}
