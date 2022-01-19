@@ -5,7 +5,7 @@
 		"isolatedModules": true,
 		"jsx": "react-jsx",
 		"lib": ["esnext", "dom"],
-		"module": "esnext",
+		"module": "CommonJS",
 		"moduleResolution": "node",
 		"noImplicitOverride": true,
 		"skipLibCheck": true,
