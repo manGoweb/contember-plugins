@@ -19,8 +19,8 @@
 		"react": "17.0.1"
 	},
 	"exports": {
-		"./image/admin": "./plugins/image/admin",
-		"./image/api/model": "./plugins/image/api/model"
+		"./image/admin": "./image/admin",
+		"./image/api/model": "./image/api/model"
 	},
 	"license": "ISC",
 	"bugs": {
