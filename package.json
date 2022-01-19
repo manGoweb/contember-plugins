@@ -6,8 +6,11 @@
 		"dist"
 	],
 	"scripts": {
+		"test": "npm run eslint:lint",
 		"eslint:lint": "eslint \"src/**/*.{ts,tsx}\"",
 		"eslint:fix": "eslint --fix \"src/**/*.{ts,tsx}\"",
+		"prepare": "npm run build",
+		"prepublishOnly": "npm test",
 		"clean": "rimraf dist/",
 		"build": "npm run clean && tsc",
 		"dev": "tsc --watch"
