@@ -5,6 +5,9 @@
 	"files": [
 		"dist"
 	],
+	"exports": {
+		".": "./dist/"
+	},
 	"scripts": {
 		"test": "npm run eslint:lint",
 		"eslint:lint": "eslint \"src/**/*.{ts,tsx}\"",
