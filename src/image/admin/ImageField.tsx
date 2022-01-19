@@ -1,13 +1,12 @@
-import { Component, FormGroupProps, ImageUploadField, TextField } from '@contember/admin'
-import * as React from 'react'
+import { Component, ImageUploadField, TextField } from '@contember/admin'
 
 export interface ImageFieldProps {
 	field: string
-	label?: FormGroupProps['label']
-	description?: FormGroupProps['description']
-	labelDescription?: FormGroupProps['labelDescription']
+	label?: string
+	description?: string
+	labelDescription?: string
 	hideAltField?: boolean
-	altLabel?: FormGroupProps['label']
+	altLabel?: string
 }
 
 export const ImageField = Component<ImageFieldProps>((props: ImageFieldProps) => {
