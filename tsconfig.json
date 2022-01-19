@@ -11,8 +11,6 @@
 		"skipLibCheck": true,
 		"strict": true,
 		"target": "esnext",
-		"outDir": "dist",
-		"declaration": true,
-		"declarationMap": true
+		"outDir": "dist"
 	}
 }
