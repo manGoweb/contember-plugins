@@ -6,7 +6,8 @@
 		"dist"
 	],
 	"scripts": {
-		"build": "rm -rf dist && tsc",
+		"clean": "rimraf dist/",
+		"build": "npm run clean && tsc",
 		"dev": "tsc --watch"
 	},
 	"repository": {
@@ -23,6 +24,7 @@
 		"@contember/schema-definition": "^1.0.0-rc.2",
 		"@types/react": "17.0.20",
 		"react": "17.0.1",
+		"rimraf": "^3.0.2",
 		"typescript": "^4.5.4"
 	},
 	"license": "ISC",
