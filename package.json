@@ -6,7 +6,7 @@
 		"dist"
 	],
 	"exports": {
-		".": "./dist/"
+		"./*": "./dist/*"
 	},
 	"scripts": {
 		"test": "npm run eslint:lint",
