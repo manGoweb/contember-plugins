@@ -3,6 +3,9 @@
 	"version": "0.0.5",
 	"description": "Common contember plugins.",
 	"type": "module",
+	"files": [
+		"dist"
+	],
 	"scripts": {
 		"build": "rm -rf dist && tsc",
 		"dev": "tsc --watch"
