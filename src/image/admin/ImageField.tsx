@@ -1,17 +1,17 @@
-import { Component, ImageUploadField, TextField } from '@contember/admin'
+import { Component, FieldContainerProps, ImageUploadField, TextField } from '@contember/admin'
 
 export interface ImageFieldProps {
 	field: string
-	label?: string
-	description?: string
-	labelDescription?: string
+	label?: FieldContainerProps['label']
+	description?: FieldContainerProps['description']
+	labelDescription?: FieldContainerProps['labelDescription']
 	hideAltField?: boolean
 	altLabel?: string
 }
 
 export const ImageField = Component<ImageFieldProps>((props: ImageFieldProps) => {
 	const urlField = 'url'
-	const altField = `alt`
+	const altField = 'alt'
 
 	return (
 		<ImageUploadField
