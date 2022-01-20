@@ -1,5 +1,4 @@
 import { Component, SideDimensions, SideDimensionsProps, Variable } from '@contember/admin'
-import * as React from 'react'
 
 interface LocaleSideDimensionProps {
 	children: React.ReactNode
