@@ -5,6 +5,7 @@
 	"files": [
 		"dist"
 	],
+	"type": "commonjs",
 	"scripts": {
 		"test": "npm run eslint:lint",
 		"eslint:lint": "eslint \"src/**/*.{ts,tsx}\"",
