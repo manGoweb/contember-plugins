@@ -1,6 +1,6 @@
 {
 	"name": "@mangoweb/contember-plugins",
-	"version": "0.1.7",
+	"version": "0.1.8",
 	"description": "Common contember plugins.",
 	"files": [
 		"dist"
