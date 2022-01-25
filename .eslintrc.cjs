@@ -1,6 +1,6 @@
 // Based on https://dev.to/robertcoopercode/using-eslint-and-prettier-in-a-typescript-project-53jb
 
-export default {
+module.exports = {
 	parser: '@typescript-eslint/parser',
 	extends: ['plugin:@typescript-eslint/recommended', 'prettier', 'plugin:prettier/recommended'],
 	plugins: ['react-hooks', '@typescript-eslint', 'react'],
