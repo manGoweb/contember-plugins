@@ -1,5 +1,5 @@
 import { Component, useEnvironment } from '@contember/admin'
-import { default as React, ReactNode } from 'react'
+import { ReactNode } from 'react'
 
 export const WaitForDimensions = Component<{ dim: string[]; children: ReactNode }>(props => {
 	const env = useEnvironment()

@@ -5,16 +5,18 @@ const CATALOGUES_QUERY = `
 		list: listTranslationCatalogue(
 			filter: {
 				domain: { identifier: { eq: $domain } },
-				identifier: { in: $catalogues }
+				identifier: { code: { in: $catalogues } }
 			}
 		) {
-			identifier
-			name
+			identifier {
+				name
+				code
+			}
 		}
 	}
 `
 
-export type CatalogueQueryEntry = { identifier: string; name: string }
+export type CatalogueQueryEntry = { identifier: { code: string; name: string } }
 export type CatalogueQueryResult = { list: CatalogueQueryEntry[] }
 export type CatalogueQueryVariables = { domain: string; catalogues: string[] }
 

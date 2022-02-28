@@ -9,22 +9,19 @@ import {
 	SelectField,
 	TableCell,
 	TablePage,
-	TextField,
 } from '@contember/admin'
-import { EditButton } from '../../..'
 
 const TranslationCatalogueForm = Component(
 	() => (
 		<Box>
 			<SelectField field="domain" label="Domain" options="TranslationDomain.name" />
-			<TextField field="identifier" label="Identifier" allowNewlines={false} />
-			<TextField field="name" label="Name" allowNewlines={false} />
+			<SelectField field="identifier" label="Identifier" options="TranslationCataloguesIdentifier.name"></SelectField>
 			<SelectField
 				field="fallback"
 				label="Fallback catalogue"
 				options={{ entityName: 'TranslationCatalogue' }}
 				renderOption={accessor => {
-					const name = accessor.getField<string>('name').value
+					const name = accessor.getField<string>('identifier.name').value
 					const domainName = accessor.getField<string>('domain.name').value
 					return (
 						<>
@@ -34,7 +31,7 @@ const TranslationCatalogueForm = Component(
 				}}
 				optionsStaticRender={
 					<>
-						<Field field="name" />
+						<Field field="identifier.name" />
 						<Field field="domain.name" />
 					</>
 				}
@@ -48,7 +45,7 @@ export const TranslationCatalogueListPage = (
 	<TablePage
 		pageName="translationCatalogueList"
 		entities="TranslationCatalogue"
-		orderBy="domain.name asc, name asc"
+		orderBy="domain.name asc, identifier.name asc"
 		rendererProps={{
 			title: 'Translation Catalogues',
 			actions: <LinkButton to="translationCatalogueCreate">Add a new translation catalogue</LinkButton>,
@@ -59,11 +56,11 @@ export const TranslationCatalogueListPage = (
 		</TableCell>
 
 		<TableCell>
-			<Field field="name" />
+			<Field field="identifier.name" />
 		</TableCell>
 
 		<TableCell shrunk>
-			<EditButton pageName="translationCatalogueEdit" />
+			<LinkButton to="translationCatalogueEdit(id: $entity.id)">Edit</LinkButton>
 		</TableCell>
 	</TablePage>
 )

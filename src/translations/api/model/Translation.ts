@@ -13,12 +13,17 @@ export class TranslationDomain {
 @def.Unique('domain', 'identifier')
 export class TranslationCatalogue {
 	domain = def.manyHasOne(TranslationDomain, 'catalogues').notNull().cascadeOnDelete()
-	identifier = def.stringColumn().notNull()
+	identifier = def.manyHasOne(TranslationCataloguesIdentifier, 'catalogue').notNull().cascadeOnDelete()
 
 	fallback = def.manyHasOne(TranslationCatalogue).setNullOnDelete() as def.ManyHasOneDefinition
-	name = def.stringColumn().notNull()
 
 	values = def.oneHasMany(TranslationValue, 'catalogue') as def.OneHasManyDefinition
+}
+
+export class TranslationCataloguesIdentifier {
+	catalogue = def.oneHasMany(TranslationCatalogue, 'identifier')
+	name = def.stringColumn().notNull()
+	code = def.stringColumn().notNull().unique()
 }
 
 @def.Unique('domain', 'identifier')

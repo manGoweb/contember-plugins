@@ -108,7 +108,9 @@ const TableHead = memo(({ domain, catalogues, filter, setFilter, setPage }: Tabl
 	const catalogueNames = useCatalogueQuery({ domain, catalogues })
 
 	const getCatalogueName = (catalogue: string): string => {
-		return catalogueNames?.find((it: CatalogueQueryEntry) => it.identifier === catalogue)?.name ?? catalogue
+		return (
+			catalogueNames?.find((it: CatalogueQueryEntry) => it.identifier.code === catalogue)?.identifier.name ?? catalogue
+		)
 	}
 
 	return (
@@ -203,7 +205,7 @@ const TableRow = memo(({ entity, catalogues }: TableRowProps) => (
 			{catalogues.map((identifier: string) => (
 				<td key={identifier}>
 					<TextField
-						field={`values(catalogue.identifier = '${identifier}', catalogue.domain.identifier = $domain).value`}
+						field={`values(catalogue.identifier.code = '${identifier}', catalogue.domain.identifier = $domain).value`}
 						label={undefined}
 						allowNewlines={true}
 					/>
@@ -288,7 +290,7 @@ const TranslationTable = Component<{ accessor: EntityListAccessor }>(
 			{env.getDimension('catalogue').map((identifier: string) => (
 				<Field
 					key={identifier}
-					field={`values(catalogue.identifier = '${identifier}', catalogue.domain.identifier = $domain).value`}
+					field={`values(catalogue.identifier.code = '${identifier}', catalogue.domain.identifier = $domain).value`}
 				/>
 			))}
 		</>
@@ -311,10 +313,10 @@ export const TranslationValuePage = (
 			<WaitForDimensions dim={['domain']}>
 				<DimensionsSwitcher
 					optionEntities="TranslationCatalogue[domain.identifier = $domain]"
-					orderBy="name asc"
+					orderBy="identifier.name asc"
 					dimension="catalogue"
-					labelField="name"
-					slugField="identifier"
+					labelField="identifier.name"
+					slugField="identifier.code"
 					maxItems={12}
 				/>
 			</WaitForDimensions>

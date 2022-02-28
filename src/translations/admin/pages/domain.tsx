@@ -10,7 +10,6 @@ import {
 	TablePage,
 	TextField,
 } from '@contember/admin'
-import { EditButton } from '../../..'
 
 const TranslationDomainForm = Component(
 	() => (
@@ -37,7 +36,7 @@ export const TranslationDomainListPage = (
 		</TableCell>
 
 		<TableCell shrunk>
-			<EditButton pageName="translationDomainEdit" />
+			<LinkButton to="translationDomainEdit(id: $entity.id)">Edit</LinkButton>
 		</TableCell>
 	</TablePage>
 )
