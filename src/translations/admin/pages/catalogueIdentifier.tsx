@@ -9,7 +9,7 @@ export const TranslationCatalogueIdentifierListPage = (
 			title: 'Translation catalogue identifiers',
 		}}
 	>
-		<TextField field="name" label="Name" />
 		<TextField field="code" label="Code" />
+		<TextField field="name" label="Name" />
 	</MultiEditPage>
 )
