@@ -15,9 +15,10 @@
 		"prepare": "npm run build",
 		"prepublishOnly": "npm test",
 		"clean": "rimraf dist/",
-		"build": "npm run clean && npm run build:esm && npm run build:commonjs",
+		"build": "npm run clean && npm run build:esm && npm run build:commonjs && npm run copy-sass-to-dist",
 		"build:esm": "tsc",
 		"build:commonjs": "tsc --project tsconfig-commonjs.json && echo { \\\"type\\\": \\\"commonjs\\\" } > dist/commonjs/package.json",
+		"copy-sass-to-dist": "cp src/translations/admin/theme.sass dist/translations/admin/theme.sass && cp src/translations/admin/theme.sass dist/commonjs/translations/admin/theme.sass",
 		"dev": "tsc --watch"
 	},
 	"repository": {
