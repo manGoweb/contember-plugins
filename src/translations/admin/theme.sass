@@ -1,0 +1,107 @@
+.translation
+	&-dimensions
+		display: flex
+		flex-direction: row
+		margin-bottom: 20px
+		margin-right: 20px
+		float: left
+
+		> *:not(:last-child)
+			margin-right: 10px
+
+		.dimensionsSwitcher // hide switcher with single value
+			display: none
+
+	&-paginator
+		display: flex
+		flex-direction: row
+		margin-bottom: 20px
+		align-items: center
+
+		> *:not(:last-child)
+			margin-right: 10px
+
+		.translation-limit
+			width: 50px
+
+	&-values-grid
+		width: 100%
+		background-color: var(--cui-box-content-background-color)
+		border-collapse: collapse
+		position: relative
+
+		thead
+			th, td
+				&:first-child
+					border-left: 1px solid var(--cui-color--lower)
+
+				&:last-child
+					border-right: 1px solid var(--cui-color--lower)
+
+			th
+				border-top: 1px solid var(--cui-color--lower)
+				position: sticky
+				top: 70px
+				background-color: #000
+				color: #fff
+				z-index: 100
+				padding: 4px 8px
+				text-align: left
+				font-size: 120%
+
+			td
+				position: sticky
+				top: 102px
+				background-color: #333
+				color: #fff
+				z-index: 100
+				font-size: 79%
+
+				input
+					background-color: transparent
+					color: #fff
+
+					&::placeholder
+						color: #aaa
+						font-style: italic
+
+		tbody
+			td
+				vertical-align: top
+				border: 1px solid var(--cui-color--lower)
+
+		thead,
+		tbody
+			td:first-child,
+			th:first-child
+				width: 300px
+
+				.translation-note input,
+				.translation-note textarea
+					font-size: small
+					padding-left: 8px
+					color: #777
+
+					&:placeholder-shown
+						display: none
+
+					&::placeholder
+						color: #777
+						font-style: italic
+
+				&:focus-within
+					.translation-note input:placeholder-shown,
+					.translation-note textarea:placeholder-shown
+						display: block
+
+			td:last-child,
+			th:last-child
+				width: 27px
+
+		input,
+		textarea
+			border: none
+			background: transparent
+
+			&:focus
+				box-shadow: none
