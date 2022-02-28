@@ -17,7 +17,7 @@ import {
 	PersistButton,
 	TextField,
 	TextInput,
-	useEnvironment
+	useEnvironment,
 } from '@contember/admin'
 import { default as React, Dispatch, memo, SetStateAction, useCallback, useMemo, useState } from 'react'
 import { WaitForDimensions } from '../components/WaitForDimensions'
