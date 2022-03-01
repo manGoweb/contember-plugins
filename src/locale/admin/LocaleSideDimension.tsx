@@ -1,6 +1,6 @@
 import { Component, SideDimensions, SideDimensionsProps, Variable } from '@contember/admin'
 
-interface LocaleSideDimensionProps {
+export interface LocaleSideDimensionProps {
 	children: React.ReactNode
 	hasOneField?: SideDimensionsProps['hasOneField']
 }
