@@ -1,0 +1,20 @@
+name: CI
+
+on:
+  push:
+    tags: ['**']
+
+jobs:
+  publish-npm:
+    if: github.event_name == 'push' && github.ref_type == 'tag'
+    runs-on: ubuntu-latest
+    container: node:16-alpine
+
+    env:
+      NPM_PUBLISH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm ci
+      - run: npm set "//npm.pkg.github.com/:_authToken" "$NPM_PUBLISH_TOKEN"
+      - run: npm publish

@@ -5,5 +5,6 @@
 ```sh
 npm version major|minor|patch
 git push && git push --tags
-npm publish
 ```
+
+GitHub CI will publish to GitHub npm registry automatically.
