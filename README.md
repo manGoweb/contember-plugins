@@ -1,5 +1,18 @@
 # Contember plugins
 
+- [datagrid](src/datagrid/README.md)
+- [deleteEntityButton](src/deleteEntityButton/README.md)
+- [editButton](src/editButton/README.md)
+- [env](src/env/README.md)
+- [gap](src/gap/README.md)
+- [image](src/image/README.md)
+- [locale](src/locale/README.md)
+- [seo](src/seo/README.md)
+- [snappyimg](src/snappyimg/README.md)
+- [translations](src/translations/README.md)
+- [urlField](src/urlField/README.md)
+- [youtube](src/youtube/README.md)
+
 ## How to publish new version
 
 ```sh
