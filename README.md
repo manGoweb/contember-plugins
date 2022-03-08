@@ -6,6 +6,7 @@
 - [env](src/env/README.md)
 - [gap](src/gap/README.md)
 - [image](src/image/README.md)
+- [link](src/link/README.md)
 - [locale](src/locale/README.md)
 - [seo](src/seo/README.md)
 - [snappyimg](src/snappyimg/README.md)
