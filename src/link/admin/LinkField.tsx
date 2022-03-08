@@ -13,7 +13,7 @@ import {
 
 export interface LinkFieldProps {
 	field: string
-	label: string
+	label?: string
 	titleField?: boolean
 	allowDisconnect?: boolean
 }
