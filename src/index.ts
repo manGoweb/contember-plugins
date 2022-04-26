@@ -1,7 +1,7 @@
 // @TODO: replace main in package.json by exports
 export * from './datagrid/admin'
 export * from './deleteEntityButton/admin'
-export * from './descriminatedByBooleanField/admin'
+export * from './discriminatedByBooleanField/admin'
 export * from './editButton/admin'
 export * from './env/admin'
 export * from './gap/admin'

@@ -2,7 +2,7 @@
 
 - [datagrid](src/datagrid/README.md)
 - [deleteEntityButton](src/deleteEntityButton/README.md)
-- [descriminatedByBooleanField](src/descriminatedByBooleanField/README.md)
+- [discriminatedByBooleanField](src/discriminatedByBooleanField/README.md)
 - [editButton](src/editButton/README.md)
 - [env](src/env/README.md)
 - [gap](src/gap/README.md)

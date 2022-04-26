@@ -1,7 +1,7 @@
 import { Component, Field, FieldView } from '@contember/admin'
 import { ReactNode } from 'react'
 
-export const DescriminatedByBooleanField = Component<{
+export const DiscriminatedByBooleanField = Component<{
 	booleanField: string
 	children: ReactNode
 	condition?: (value: boolean | null) => boolean
