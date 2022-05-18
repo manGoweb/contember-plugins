@@ -88,18 +88,16 @@ type TableHeadProps = {
 }
 const TableHead = memo(({ domain, catalogues, filter, setFilter, setPage }: TableHeadProps) => {
 	const onKeyChange = useCallback(
-		(e: React.ChangeEvent<HTMLInputElement>) => {
-			const value = e.target.value
-			setFilter((prev: Filter) => ({ ...prev, key: value }))
+		(value: string | null | undefined) => {
+			setFilter((prev: Filter) => ({ ...prev, key: value ?? '' }))
 			setPage(0)
 		},
 		[setFilter, setPage],
 	)
 
 	const onValueChange = useCallback(
-		(catalogue: string) => (e: React.ChangeEvent<HTMLInputElement>) => {
-			const value = e.target.value
-			setFilter((prev: Filter) => ({ ...prev, values: { ...prev.values, [catalogue]: value } }))
+		(catalogue: string) => (value: string | null | undefined) => {
+			setFilter((prev: Filter) => ({ ...prev, values: { ...prev.values, [catalogue]: value ?? '' } }))
 			setPage(0)
 		},
 		[setFilter, setPage],
@@ -124,12 +122,7 @@ const TableHead = memo(({ domain, catalogues, filter, setFilter, setPage }: Tabl
 			</tr>
 			<tr>
 				<td>
-					<TextInput
-						value={filter.key ?? ''}
-						onChange={onKeyChange}
-						allowNewlines={false}
-						placeholder="filter key or note"
-					/>
+					<TextInput value={filter.key ?? ''} onChange={onKeyChange} placeholder="filter key or note" />
 				</td>
 
 				{catalogues.map((catalogue: string) => (
@@ -137,7 +130,6 @@ const TableHead = memo(({ domain, catalogues, filter, setFilter, setPage }: Tabl
 						<TextInput
 							value={filter.values?.[catalogue] ?? ''}
 							onChange={onValueChange(catalogue)}
-							allowNewlines={false}
 							placeholder={`filter ${getCatalogueName(catalogue)} values`}
 						/>
 					</td>
@@ -163,7 +155,7 @@ const TablePaginator = memo(({ pageCount, page, setPage, limit, setLimit }: Tabl
 	const nextClick = useCallback(() => setPage(page + 1), [page, setPage])
 
 	const limitChange = useCallback(
-		(e: React.ChangeEvent<HTMLInputElement>) => setLimit(Number.parseInt(e.target.value)),
+		(value: string | null | undefined) => setLimit(Number.parseInt(value ?? '')),
 		[setLimit],
 	)
 
@@ -179,7 +171,7 @@ const TablePaginator = memo(({ pageCount, page, setPage, limit, setLimit }: Tabl
 				Next
 			</Button>
 			<div className="translation-limit">
-				<TextInput value={limit.toString()} onChange={limitChange} allowNewlines={false} />
+				<TextInput value={limit.toString()} onChange={limitChange} />
 			</div>
 		</div>
 	)
