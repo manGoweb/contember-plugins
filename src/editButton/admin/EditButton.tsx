@@ -1,4 +1,4 @@
-import { AnchorButton, AnchorButtonProps, LinkButton, RoutingParameter } from '@contember/admin'
+import { AnchorButtonProps, Link, LinkButton, RoutingParameter } from '@contember/admin'
 import * as React from 'react'
 
 export type EditButtonProps = AnchorButtonProps & {
@@ -6,29 +6,12 @@ export type EditButtonProps = AnchorButtonProps & {
 	unstyled?: boolean
 }
 
-export const EditButton: React.ComponentType<EditButtonProps> = ({
-	pageName,
-	children,
-	unstyled,
-	...outerButtonProps
-}) => {
+export const EditButton: React.ComponentType<EditButtonProps> = ({ pageName, children, unstyled }) => {
 	const content = children || 'Edit'
-	return (
-		<>
-			<LinkButton
-				to={{ pageName, parameters: { id: new RoutingParameter('entity.id') } }}
-				Component={buttonProps =>
-					unstyled ? (
-						<a {...buttonProps} {...outerButtonProps}>
-							{content}
-						</a>
-					) : (
-						<AnchorButton {...buttonProps} {...outerButtonProps}>
-							{content}
-						</AnchorButton>
-					)
-				}
-			/>
-		</>
-	)
+	const to = { pageName, parameters: { id: new RoutingParameter('entity.id') } }
+
+	if (unstyled) {
+		return <Link to={to}>{content}</Link>
+	}
+	return <LinkButton to={to}>{content}</LinkButton>
 }
