@@ -1,4 +1,4 @@
-import { AnchorButton, AnchorButtonProps, PageLinkById } from '@contember/admin'
+import { AnchorButton, AnchorButtonProps, LinkButton, RoutingParameter } from '@contember/admin'
 import * as React from 'react'
 
 export type EditButtonProps = AnchorButtonProps & {
@@ -14,19 +14,21 @@ export const EditButton: React.ComponentType<EditButtonProps> = ({
 }) => {
 	const content = children || 'Edit'
 	return (
-		<PageLinkById
-			to={pageName}
-			Component={({ isActive, ...buttonProps }) =>
-				unstyled ? (
-					<a {...buttonProps} {...outerButtonProps}>
-						{content}
-					</a>
-				) : (
-					<AnchorButton {...buttonProps} {...outerButtonProps}>
-						{content}
-					</AnchorButton>
-				)
-			}
-		/>
+		<>
+			<LinkButton
+				to={{ pageName, parameters: { id: new RoutingParameter('entity.id') } }}
+				Component={buttonProps =>
+					unstyled ? (
+						<a {...buttonProps} {...outerButtonProps}>
+							{content}
+						</a>
+					) : (
+						<AnchorButton {...buttonProps} {...outerButtonProps}>
+							{content}
+						</AnchorButton>
+					)
+				}
+			/>
+		</>
 	)
 }
