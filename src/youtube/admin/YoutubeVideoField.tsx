@@ -22,25 +22,26 @@ export const YoutubeVideoField = Component<YoutubeVideoFieldProps>(
 		const entity = rootEntity.getEntity(field)
 		const idField = entity.getField<string>('videoId')
 		const fieldValue = idField.value
-		const [inputValue, setInputValue] = useState('')
+		const [inputValue, setInputValue] = useState<string | null | undefined>('')
 
-		const onChange = (event: any) => {
-			const newValue = event.target.value
-			setInputValue(newValue)
+		const onChange = (value: string | null | undefined) => {
+			setInputValue(value)
 
-			const id = (() => {
-				try {
-					const url = new URL(newValue)
-					if (url.host.endsWith('youtube.com')) {
-						return url.searchParams.get('v') || undefined
-					} else if (url.host.endsWith('youtu.be')) {
-						return url.pathname.substring(1)
-					}
-				} catch {}
-			})()
+			if (typeof value === 'string') {
+				const id = (() => {
+					try {
+						const url = new URL(value)
+						if (url.host.endsWith('youtube.com')) {
+							return url.searchParams.get('v') || undefined
+						} else if (url.host.endsWith('youtu.be')) {
+							return url.pathname.substring(1)
+						}
+					} catch {}
+				})()
 
-			if (id) {
-				idField.updateValue(id)
+				if (id) {
+					idField.updateValue(id)
+				}
 			}
 		}
 
