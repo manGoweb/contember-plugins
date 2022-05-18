@@ -1,0 +1,15 @@
+name: Test
+
+on:
+  push:
+    branches: ['**']
+
+jobs:
+  publish-npm:
+    runs-on: ubuntu-latest
+    container: node:16-alpine
+
+    steps:
+      - uses: actions/checkout@v2
+      - run: npm ci
+      - run: npm run prepare
