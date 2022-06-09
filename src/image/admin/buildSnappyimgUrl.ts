@@ -1,4 +1,4 @@
-import Snappyimg, { Options, Stage } from 'snappyimg'
+import { Options, Snappyimg, Stage } from 'snappyimg'
 
 let snappyimg: null | Snappyimg = null
 
