@@ -55,6 +55,6 @@
 	},
 	"homepage": "https://github.com/manGoweb/contember-plugins#readme",
 	"dependencies": {
-		"snappyimg": "^0.2.5"
+		"snappyimg": "^0.3.0"
 	}
 }
