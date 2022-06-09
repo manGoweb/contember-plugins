@@ -1,6 +1,6 @@
 import { Component, ImageFieldView, ImageFieldViewProps } from '@contember/admin'
 import type { FunctionComponent } from 'react'
-import Snappyimg from 'snappyimg'
+import { Resize } from 'snappyimg'
 import { buildSnappyimgUrl } from './buildSnappyimgUrl'
 
 export type ImageFieldWithFallbackViewProps = Partial<ImageFieldViewProps> & Pick<ImageFieldViewProps, 'srcField'>
@@ -10,7 +10,7 @@ export const ImageFieldWithFallbackView = Component<ImageFieldWithFallbackViewPr
 		<ImageFieldView
 			formatUrl={srcFieldValue =>
 				buildSnappyimgUrl(srcFieldValue, {
-					resize: Snappyimg.Resize.Fit,
+					resize: Resize.Fit,
 					width: 2 * parseInt(`${props.width || 28}`),
 					height: 2 * parseInt(`${props.height || 28}`),
 				})
