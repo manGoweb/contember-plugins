@@ -12,6 +12,7 @@
 - [seo](src/seo/README.md)
 - [snappyimg](src/snappyimg/README.md)
 - [tenant](src/tenant/README.md)
+- [text](src/text/README.md)
 - [translations](src/translations/README.md)
 - [urlField](src/urlField/README.md)
 - [youtube](src/youtube/README.md)
