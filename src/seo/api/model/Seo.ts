@@ -7,4 +7,10 @@ export class Seo {
 	ogTitle = d.stringColumn()
 	ogDescription = d.stringColumn()
 	ogImage = d.oneHasOne(Image).cascadeOnDelete()
+	options = d.oneHasOne(SeoOptions).setNullOnDelete()
+}
+
+export class SeoOptions {
+	noIndex = d.boolColumn().default(false)
+	noFollow = d.boolColumn().default(false)
 }

@@ -1,5 +1,6 @@
 import {
 	Box,
+	CheckboxField,
 	Component,
 	DerivedFieldLink,
 	DerivedFieldLinkProps,
@@ -15,6 +16,7 @@ export interface SeoFieldProps {
 	field: string
 	titleDerivedFrom?: DerivedFieldLinkProps['derivedField']
 	descriptionDerivedFrom?: DerivedFieldLinkProps['derivedField']
+	options?: boolean
 }
 
 const defaultSeoDictionary = {
@@ -35,6 +37,17 @@ const defaultSeoDictionary = {
 		ogImage: {
 			label: 'OG image',
 			description: 'Recommended aspect ratio 19:10. E.g. 2400×1260 px.',
+		},
+		options: {
+			noFollow: {
+				label: 'No follow',
+				description: 'It disallows search engines from crawling the links on that page.',
+			},
+			noIndex: {
+				label: 'No index',
+				description:
+					'It tells a search engine that even though it can crawl the page, it cannot add the page into its search index.',
+			},
 		},
 	},
 }
@@ -59,6 +72,16 @@ const csCZSeoDictionary: SeoDictionary = {
 			label: 'OG obrázek',
 			description: 'Doporučený poměr stran 19:10. Například 2400×1260 px.',
 		},
+		options: {
+			noFollow: {
+				label: 'No follow',
+				description: 'Dáva pokyn aby vyhledávače nebraly v potaz žádný odkaz z obsahu stránky/podstránky',
+			},
+			noIndex: {
+				label: 'No index',
+				description: 'Informuje vyhledávače, aby neindexovaly konkrétní webovou stránku.',
+			},
+		},
 	},
 }
 
@@ -81,6 +104,20 @@ export const SeoField = Component<SeoFieldProps>(
 					</>
 				)}
 				<HasOne field={props.field}>
+					{props.options && (
+						<HasOne field="options">
+							<CheckboxField
+								field="noIndex"
+								label={formatter('seo.options.noIndex.label')}
+								labelDescription={formatter('seo.options.noIndex.description')}
+							/>
+							<CheckboxField
+								field="noFollow"
+								label={formatter('seo.options.noFollow.label')}
+								labelDescription={formatter('seo.options.noFollow.description')}
+							/>
+						</HasOne>
+					)}
 					<TextField field="title" label={formatter('seo.title.label')} />
 					<TextAreaField field="description" label={formatter('seo.description.label')} />
 					<TextField field="ogTitle" label={formatter('seo.ogTitle.label')} />
@@ -101,6 +138,10 @@ export const SeoField = Component<SeoFieldProps>(
 			<Field field="ogTitle" />
 			<Field field="ogDescription" />
 			<ImageField field="ogImage" />
+			<HasOne field="options">
+				<Field field="noIndex" />
+				<Field field="noFollow" />
+			</HasOne>
 		</HasOne>
 	),
 	'SeoField',
