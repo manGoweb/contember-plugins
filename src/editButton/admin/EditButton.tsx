@@ -4,6 +4,7 @@ import * as React from 'react'
 export type EditButtonProps = AnchorButtonProps & {
 	pageName: string
 	unstyled?: boolean
+	children?: React.ReactNode
 }
 
 export const EditButton: React.ComponentType<EditButtonProps> = ({ pageName, children, unstyled }) => {

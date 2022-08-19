@@ -30,8 +30,8 @@
 	},
 	"peerDependencies": {
 		"@contember/admin": "^1.0.0-rc.27 || ^1.1.0-alpha.5",
-		"@contember/schema-definition": "^1.1.0-alpha.5 || ^0.12.0-alpha.10 || ^1.0.0-rc.16",
-		"react": "^17"
+		"@contember/schema-definition": "^1.1.0-alpha.5 || ^0.12.0-alpha.10 || ^1.0.0-rc.16 || ^1.2.0-alpha.7",
+		"react": "^17 || ^18"
 	},
 	"devDependencies": {
 		"@contember/admin": "^1.0.0-rc.27",
