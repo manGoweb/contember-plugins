@@ -1,5 +1,6 @@
 import {
 	ActionableBox,
+	Box,
 	Component,
 	Field,
 	FieldContainer,
@@ -22,7 +23,9 @@ export const YoutubeVideoField = Component<YoutubeVideoFieldProps>(
 		const entity = rootEntity.getEntity(field)
 		const idField = entity.getField<string>('videoId')
 		const fieldValue = idField.value
-		const [inputValue, setInputValue] = useState<string | null | undefined>('')
+		const [inputValue, setInputValue] = useState<string | null | undefined>(
+			() => fieldValue && `https://www.youtube.com/watch?v=${fieldValue}`,
+		)
 
 		const onChange = (value: string | null | undefined) => {
 			setInputValue(value)
@@ -41,34 +44,13 @@ export const YoutubeVideoField = Component<YoutubeVideoFieldProps>(
 
 				if (id) {
 					idField.updateValue(id)
+				} else {
+					idField.updateValue(null)
 				}
 			}
 		}
 
-		if (fieldValue) {
-			const preview = (
-				<div style={{ marginInline: 'auto', width: '100%', maxWidth: '20rem' }}>
-					<YoutubeVideoPreview videoId={fieldValue} />
-				</div>
-			)
-			return (
-				<FieldContainer label={label}>
-					{allowDisconnect ? (
-						<ActionableBox
-							onRemove={() => {
-								rootEntity.disconnectEntityAtField(field)
-							}}
-						>
-							{preview}
-						</ActionableBox>
-					) : (
-						preview
-					)}
-				</FieldContainer>
-			)
-		}
-
-		return (
+		const input = (
 			<FieldContainer
 				label={label}
 				description={'YouTube video URL (e.g. "https://www.youtube.com/watch?v=dQw4w9WgXcQ")'}
@@ -76,6 +58,29 @@ export const YoutubeVideoField = Component<YoutubeVideoFieldProps>(
 				<TextInput value={inputValue} onChange={onChange} />
 			</FieldContainer>
 		)
+
+		if (fieldValue) {
+			return (
+				<FieldContainer label={label}>
+					<ActionableBox
+						onRemove={
+							allowDisconnect
+								? () => {
+										rootEntity.disconnectEntityAtField(field)
+								  }
+								: undefined
+						}
+						editContents={<Box>{input}</Box>}
+					>
+						<div style={{ marginInline: 'auto', width: '100%', maxWidth: '20rem' }}>
+							<YoutubeVideoPreview videoId={fieldValue} />
+						</div>
+					</ActionableBox>
+				</FieldContainer>
+			)
+		}
+
+		return input
 	},
 	({ field }) => <Field field={`${field}.videoId`} />,
 	'YoutubeVideoField',
