@@ -46,6 +46,11 @@ export const YoutubeVideoField = Component<YoutubeVideoFieldProps>(
 		}
 
 		if (fieldValue) {
+			const preview = (
+				<FieldContainer label={label}>
+					<YoutubeVideoPreview videoId={fieldValue} />
+				</FieldContainer>
+			)
 			return (
 				<div
 					style={{
@@ -59,10 +64,10 @@ export const YoutubeVideoField = Component<YoutubeVideoFieldProps>(
 								rootEntity.disconnectEntityAtField(field)
 							}}
 						>
-							<YoutubeVideoPreview videoId={fieldValue} />
+							{preview}
 						</ActionableBox>
 					) : (
-						<YoutubeVideoPreview videoId={fieldValue} />
+						preview
 					)}
 				</div>
 			)
