@@ -48,16 +48,13 @@ export const YoutubeVideoField = Component<YoutubeVideoFieldProps>(
 		if (fieldValue) {
 			const preview = (
 				<FieldContainer label={label}>
-					<YoutubeVideoPreview videoId={fieldValue} />
+					<div style={{ marginInline: 'auto', width: '100%', maxWidth: '20rem' }}>
+						<YoutubeVideoPreview videoId={fieldValue} />
+					</div>
 				</FieldContainer>
 			)
 			return (
-				<div
-					style={{
-						maxWidth: '300px',
-						marginTop: '1em',
-					}}
-				>
+				<div>
 					{allowDisconnect ? (
 						<ActionableBox
 							onRemove={() => {
