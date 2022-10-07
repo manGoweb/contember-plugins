@@ -3,7 +3,7 @@ import { Component } from '@contember/admin'
 export const YoutubeVideoPreview = Component<{ videoId: string }>(({ videoId }) => (
 	<div
 		style={{
-			paddingTop: '56.25%',
+			aspectRatio: '16 / 9',
 			position: 'relative',
 		}}
 	>
