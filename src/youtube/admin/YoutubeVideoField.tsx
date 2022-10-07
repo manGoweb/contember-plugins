@@ -74,7 +74,10 @@ export const YoutubeVideoField = Component<YoutubeVideoFieldProps>(
 		}
 
 		return (
-			<FieldContainer label={label} description="YouTube video URL">
+			<FieldContainer
+				label={label}
+				description={'YouTube video URL (e.g. "https://www.youtube.com/watch?v=dQw4w9WgXcQ")'}
+			>
 				<TextInput value={inputValue} onChange={onChange} />
 			</FieldContainer>
 		)
