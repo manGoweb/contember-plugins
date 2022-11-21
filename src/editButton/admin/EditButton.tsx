@@ -1,4 +1,4 @@
-import { AnchorButtonProps, Link, LinkButton, RoutingParameter } from '@contember/admin'
+import { AnchorButtonProps, Link, LinkButton, RoutingParameter, useEntity } from '@contember/admin'
 import * as React from 'react'
 
 export type EditButtonProps = AnchorButtonProps & {
@@ -11,8 +11,14 @@ export const EditButton: React.ComponentType<EditButtonProps> = ({ pageName, chi
 	const content = children || 'Edit'
 	const to = { pageName, parameters: { id: new RoutingParameter('entity.id') } }
 
+	const { existsOnServer } = useEntity()
+
 	if (unstyled) {
-		return <Link to={to}>{content}</Link>
+		return existsOnServer ? <Link to={to}>{content}</Link> : <span>{content}</span>
 	}
-	return <LinkButton to={to}>{content}</LinkButton>
+	return (
+		<LinkButton to={to} disabled={existsOnServer === false}>
+			{content}
+		</LinkButton>
+	)
 }
