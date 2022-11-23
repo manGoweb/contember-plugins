@@ -35,6 +35,9 @@ export const YoutubeVideoField = Component<YoutubeVideoFieldProps>(
 					try {
 						const url = new URL(value)
 						if (url.host.endsWith('youtube.com')) {
+							if (url.pathname.startsWith('/shorts/')) {
+								return url.pathname.substring(8)
+							}
 							return url.searchParams.get('v') || undefined
 						} else if (url.host.endsWith('youtu.be')) {
 							return url.pathname.substring(1)
