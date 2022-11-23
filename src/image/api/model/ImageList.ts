@@ -2,7 +2,7 @@ import { SchemaDefinition as d } from '@contember/schema-definition'
 import { Image } from './Image'
 
 export class ImageList {
-	items = d.oneHasMany(ImageListItem, 'list')
+	items = d.oneHasMany(ImageListItem, 'list').orderBy('order')
 }
 
 export class ImageListItem {
