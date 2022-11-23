@@ -1,3 +1,3 @@
 # Image
 
-Model a field komponenta pro základní variantu obrázku.
+Model a field komponenta pro obrázek a seznam obrázků.

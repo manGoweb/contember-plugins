@@ -9,7 +9,7 @@ export interface ImageFieldProps {
 	altLabel?: string
 }
 
-export const ImageField = Component<ImageFieldProps>((props: ImageFieldProps) => {
+export const ImageField = Component<ImageFieldProps>(props => {
 	const urlField = 'url'
 	const altField = 'alt'
 
