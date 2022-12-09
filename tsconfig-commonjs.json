@@ -13,5 +13,6 @@
 		"target": "esnext",
 		"outDir": "dist/commonjs",
 		"declaration": true
-	}
+	},
+	"include": ["src/**/*"]
 }
