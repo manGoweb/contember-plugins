@@ -1,14 +1,14 @@
 import {
-	EntityAccessor,
-	useEntity,
-	useMutationState,
 	Button,
+	ButtonList,
 	ButtonOwnProps,
 	ButtonProps,
+	EntityAccessor,
 	Icon,
-	usePersistWithFeedback,
 	useDialog,
-	ButtonList,
+	useEntity,
+	useMutationState,
+	usePersistWithFeedback,
 } from '@contember/admin'
 import { memo, ReactNode, useCallback } from 'react'
 
@@ -30,7 +30,8 @@ export const DeleteEntityButton = memo((props: DeleteEntityButtonProps) => {
 				let success: boolean
 				try {
 					await openDialog({
-						content: ({ resolve, reject }) => {
+						// @TODO: find out why reject is not supported
+						content: ({ resolve /*, reject*/ }) => {
 							return (
 								<>
 									<p style={{ maxWidth: '30em', marginTop: '0' }}>{props.confirmationMessage ?? 'Are you sure?'}</p>
@@ -38,7 +39,7 @@ export const DeleteEntityButton = memo((props: DeleteEntityButtonProps) => {
 										<Button intent="primary" onClick={() => resolve(undefined)}>
 											Delete
 										</Button>
-										<Button onClick={() => reject()}>Cancel</Button>
+										{/* <Button onClick={() => reject()}>Cancel</Button> */}
 									</ButtonList>
 								</>
 							)

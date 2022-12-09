@@ -15,11 +15,15 @@
 		"prepare": "npm run build",
 		"prepublishOnly": "npm test",
 		"clean": "rimraf dist/",
-		"build": "npm run clean && npm run build:esm && npm run build:commonjs && npm run copy-sass-to-dist",
-		"build:esm": "tsc",
-		"build:commonjs": "tsc --project tsconfig-commonjs.json && echo { \\\"type\\\": \\\"commonjs\\\" } > dist/commonjs/package.json",
+		"build": "npm run clean && npm run build-esm && npm run build-commonjs && npm run copy-sass-to-dist",
+		"build-esm": "tsc",
+		"build-commonjs": "tsc --project tsconfig-commonjs.json && echo { \\\"type\\\": \\\"commonjs\\\" } > dist/commonjs/package.json",
 		"copy-sass-to-dist": "cp src/translations/admin/theme.sass dist/translations/admin/theme.sass && cp src/translations/admin/theme.sass dist/commonjs/translations/admin/theme.sass",
-		"dev": "tsc --watch"
+		"dev": "npm run start-engine && concurrently npm:start-admin npm:watch-src",
+		"watch-src": "tsc --watch",
+		"contember": "docker-compose run --rm contember-cli",
+		"start-admin": "vite admin --port 1480 --host 0.0.0.0",
+		"start-engine": "docker-compose up --detach && npm run contember migrations:execute -- --yes"
 	},
 	"repository": {
 		"type": "git",
@@ -30,15 +34,19 @@
 	},
 	"peerDependencies": {
 		"@contember/admin": "^1.0.0-rc.27 || ^1.1.0-alpha.5",
-		"@contember/schema-definition": "^1.1.0-alpha.5 || ^0.12.0-alpha.10 || ^1.0.0-rc.16 || ^1.2.0-alpha.7",
+		"@contember/schema-definition": "^1.1.0-alpha.5 || ^0.12.0-alpha.10 || ^1.0.0-rc.16 || ^1.2.0-alpha.7 || ^1.2.0-alpha.18",
 		"react": "^17 || ^18"
 	},
 	"devDependencies": {
-		"@contember/admin": "^1.0.0-rc.27",
-		"@contember/schema-definition": "^1.1.0-alpha.5",
+		"@contember/admin": "^1.1.0-alpha.16",
+		"@contember/admin-i18n": "^1.1.0-alpha.16",
+		"@contember/client": "^1.1.0-alpha.16",
+		"@contember/schema": "^1.2.0-alpha.18",
+		"@contember/schema-definition": "^1.2.0-alpha.18",
 		"@types/react": "17.0.42",
 		"@typescript-eslint/eslint-plugin": "5.16.0",
 		"@typescript-eslint/parser": "5.16.0",
+		"concurrently": "^7.6.0",
 		"eslint": "8.11.0",
 		"eslint-config-prettier": "8.5.0",
 		"eslint-plugin-prettier": "^4.0.0",
@@ -47,7 +55,8 @@
 		"prettier": "2.6.0",
 		"react": "17.0.2",
 		"rimraf": "^3.0.2",
-		"typescript": "4.6.2"
+		"typescript": "4.6.2",
+		"vite": "^4.0.0"
 	},
 	"license": "ISC",
 	"bugs": {
