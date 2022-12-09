@@ -1,0 +1,222 @@
+{
+	"formatVersion": 3,
+	"modifications": [
+		{
+			"modification": "createEntity",
+			"entity": {
+				"name": "YoutubeVideoList",
+				"primary": "id",
+				"primaryColumn": "id",
+				"tableName": "youtube_video_list",
+				"fields": {
+					"id": {
+						"name": "id",
+						"columnName": "id",
+						"columnType": "uuid",
+						"nullable": false,
+						"type": "Uuid"
+					}
+				},
+				"unique": {},
+				"indexes": {},
+				"eventLog": {
+					"enabled": true
+				}
+			}
+		},
+		{
+			"modification": "createEntity",
+			"entity": {
+				"name": "YoutubeVideoListItem",
+				"primary": "id",
+				"primaryColumn": "id",
+				"tableName": "youtube_video_list_item",
+				"fields": {
+					"id": {
+						"name": "id",
+						"columnName": "id",
+						"columnType": "uuid",
+						"nullable": false,
+						"type": "Uuid"
+					}
+				},
+				"unique": {},
+				"indexes": {},
+				"eventLog": {
+					"enabled": true
+				}
+			}
+		},
+		{
+			"modification": "createColumn",
+			"entityName": "YoutubeVideoListItem",
+			"field": {
+				"name": "order",
+				"columnName": "order",
+				"columnType": "integer",
+				"nullable": false,
+				"type": "Integer",
+				"default": 0
+			},
+			"fillValue": 0
+		},
+		{
+			"modification": "createRelation",
+			"entityName": "General",
+			"owningSide": {
+				"type": "OneHasOne",
+				"name": "singleYoutubeVideo",
+				"target": "YoutubeVideo",
+				"joiningColumn": {
+					"columnName": "single_youtube_video_id",
+					"onDelete": "set null"
+				},
+				"nullable": true
+			}
+		},
+		{
+			"modification": "createRelation",
+			"entityName": "General",
+			"owningSide": {
+				"type": "OneHasOne",
+				"name": "youtubeVideoList",
+				"target": "YoutubeVideoList",
+				"joiningColumn": {
+					"columnName": "youtube_video_list_id",
+					"onDelete": "set null"
+				},
+				"nullable": true
+			}
+		},
+		{
+			"modification": "createRelation",
+			"entityName": "YoutubeVideoListItem",
+			"owningSide": {
+				"type": "ManyHasOne",
+				"name": "list",
+				"target": "YoutubeVideoList",
+				"joiningColumn": {
+					"columnName": "list_id",
+					"onDelete": "cascade"
+				},
+				"nullable": false,
+				"inversedBy": "items"
+			},
+			"inverseSide": {
+				"type": "OneHasMany",
+				"name": "items",
+				"target": "YoutubeVideoListItem",
+				"ownedBy": "list",
+				"orderBy": [
+					{
+						"path": [
+							"order"
+						],
+						"direction": "asc"
+					}
+				]
+			}
+		},
+		{
+			"modification": "createRelation",
+			"entityName": "YoutubeVideoListItem",
+			"owningSide": {
+				"type": "OneHasOne",
+				"name": "youtube",
+				"target": "YoutubeVideo",
+				"joiningColumn": {
+					"columnName": "youtube_id",
+					"onDelete": "set null"
+				},
+				"nullable": true
+			}
+		},
+		{
+			"modification": "patchAclSchema",
+			"patch": [
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/YoutubeVideoList",
+					"value": {
+						"predicates": {},
+						"operations": {
+							"read": {
+								"id": true,
+								"items": true
+							},
+							"create": {
+								"id": true,
+								"items": true
+							},
+							"update": {
+								"id": true,
+								"items": true
+							},
+							"delete": true,
+							"customPrimary": true
+						}
+					}
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/YoutubeVideoListItem",
+					"value": {
+						"predicates": {},
+						"operations": {
+							"read": {
+								"id": true,
+								"list": true,
+								"order": true,
+								"youtube": true
+							},
+							"create": {
+								"id": true,
+								"list": true,
+								"order": true,
+								"youtube": true
+							},
+							"update": {
+								"id": true,
+								"list": true,
+								"order": true,
+								"youtube": true
+							},
+							"delete": true,
+							"customPrimary": true
+						}
+					}
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/General/operations/read/singleYoutubeVideo",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/General/operations/read/youtubeVideoList",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/General/operations/create/singleYoutubeVideo",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/General/operations/create/youtubeVideoList",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/General/operations/update/singleYoutubeVideo",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/General/operations/update/youtubeVideoList",
+					"value": true
+				}
+			]
+		}
+	]
+}
