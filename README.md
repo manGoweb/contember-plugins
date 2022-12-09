@@ -17,6 +17,17 @@
 - [urlField](src/urlField/README.md)
 - [youtube](src/youtube/README.md)
 
+## Development
+
+```sh
+npm ci # Install dependencies
+npm run dev
+```
+
+Go to [localhost:1480](http://localhost:1480/) to check admin components.
+
+Run `npm run contember migration:diff migration-name` to create a new demo migration.
+
 ## How to publish new version
 
 ```sh
