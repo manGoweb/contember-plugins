@@ -1,4 +1,5 @@
 export * from './acl'
 export * from './General'
+export * from './Image'
 export * from './One'
 export * from './Youtube'
