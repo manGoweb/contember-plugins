@@ -6,7 +6,7 @@ import {
 	DerivedFieldLinkProps,
 	Field,
 	HasOne,
-	TextAreaField,
+	TextareaField,
 	TextField,
 	useMessageFormatter,
 } from '@contember/admin'
@@ -118,9 +118,9 @@ export const SeoField = Component<SeoFieldProps>(
 						/>
 					)}
 					<TextField field="title" label={formatter('seo.title.label')} />
-					<TextAreaField field="description" label={formatter('seo.description.label')} />
+					<TextareaField field="description" label={formatter('seo.description.label')} />
 					<TextField field="ogTitle" label={formatter('seo.ogTitle.label')} />
-					<TextAreaField field="ogDescription" label={formatter('seo.ogDescription.label')} />
+					<TextareaField field="ogDescription" label={formatter('seo.ogDescription.label')} />
 					<ImageField
 						field="ogImage"
 						label={formatter('seo.ogImage.label')}
