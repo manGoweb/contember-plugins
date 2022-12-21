@@ -2,10 +2,10 @@ import { Component, useEnvironment } from '@contember/admin'
 import { ReactNode } from 'react'
 
 export const WaitForDimensions = Component<{ dim: string[]; children: ReactNode }>(props => {
-	const env = useEnvironment()
+	const environment = useEnvironment()
 
-	for (const dim of props.dim) {
-		if (!env.hasDimension(dim)) {
+	for (const dimension of props.dim) {
+		if (!environment.hasDimension(dimension)) {
 			return <></>
 		}
 	}

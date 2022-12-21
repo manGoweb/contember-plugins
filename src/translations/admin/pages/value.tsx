@@ -290,8 +290,8 @@ const TranslationTable = Component<{ accessor: EntityListAccessor }>(
 	'TranslationTable',
 )
 
-export const TranslationValuePage = (
-	<GenericPage pageName="translationValue" title="Translation Values">
+export const value = (
+	<GenericPage title="Translation Values">
 		<div className="translation-dimensions">
 			<DimensionsSwitcher
 				optionEntities="TranslationDomain"

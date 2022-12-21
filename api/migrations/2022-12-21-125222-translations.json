@@ -1,0 +1,550 @@
+{
+	"formatVersion": 3,
+	"modifications": [
+		{
+			"modification": "createEnum",
+			"enumName": "TranslationContentType",
+			"values": [
+				"textPlain",
+				"textHtml"
+			]
+		},
+		{
+			"modification": "createEntity",
+			"entity": {
+				"name": "TranslationCatalogue",
+				"primary": "id",
+				"primaryColumn": "id",
+				"tableName": "translation_catalogue",
+				"fields": {
+					"id": {
+						"name": "id",
+						"columnName": "id",
+						"columnType": "uuid",
+						"nullable": false,
+						"type": "Uuid"
+					}
+				},
+				"unique": {},
+				"indexes": {},
+				"eventLog": {
+					"enabled": true
+				}
+			}
+		},
+		{
+			"modification": "createEntity",
+			"entity": {
+				"name": "TranslationCataloguesIdentifier",
+				"primary": "id",
+				"primaryColumn": "id",
+				"tableName": "translation_catalogues_identifier",
+				"fields": {
+					"id": {
+						"name": "id",
+						"columnName": "id",
+						"columnType": "uuid",
+						"nullable": false,
+						"type": "Uuid"
+					}
+				},
+				"unique": {},
+				"indexes": {},
+				"eventLog": {
+					"enabled": true
+				}
+			}
+		},
+		{
+			"modification": "createEntity",
+			"entity": {
+				"name": "TranslationDomain",
+				"primary": "id",
+				"primaryColumn": "id",
+				"tableName": "translation_domain",
+				"fields": {
+					"id": {
+						"name": "id",
+						"columnName": "id",
+						"columnType": "uuid",
+						"nullable": false,
+						"type": "Uuid"
+					}
+				},
+				"unique": {},
+				"indexes": {},
+				"eventLog": {
+					"enabled": true
+				}
+			}
+		},
+		{
+			"modification": "createEntity",
+			"entity": {
+				"name": "TranslationKey",
+				"primary": "id",
+				"primaryColumn": "id",
+				"tableName": "translation_key",
+				"fields": {
+					"id": {
+						"name": "id",
+						"columnName": "id",
+						"columnType": "uuid",
+						"nullable": false,
+						"type": "Uuid"
+					}
+				},
+				"unique": {},
+				"indexes": {},
+				"eventLog": {
+					"enabled": true
+				}
+			}
+		},
+		{
+			"modification": "createEntity",
+			"entity": {
+				"name": "TranslationValue",
+				"primary": "id",
+				"primaryColumn": "id",
+				"tableName": "translation_value",
+				"fields": {
+					"id": {
+						"name": "id",
+						"columnName": "id",
+						"columnType": "uuid",
+						"nullable": false,
+						"type": "Uuid"
+					}
+				},
+				"unique": {},
+				"indexes": {},
+				"eventLog": {
+					"enabled": true
+				}
+			}
+		},
+		{
+			"modification": "createColumn",
+			"entityName": "TranslationCataloguesIdentifier",
+			"field": {
+				"name": "name",
+				"columnName": "name",
+				"columnType": "text",
+				"nullable": false,
+				"type": "String"
+			}
+		},
+		{
+			"modification": "createColumn",
+			"entityName": "TranslationCataloguesIdentifier",
+			"field": {
+				"name": "code",
+				"columnName": "code",
+				"columnType": "text",
+				"nullable": false,
+				"type": "String"
+			}
+		},
+		{
+			"modification": "createColumn",
+			"entityName": "TranslationDomain",
+			"field": {
+				"name": "identifier",
+				"columnName": "identifier",
+				"columnType": "text",
+				"nullable": false,
+				"type": "String"
+			}
+		},
+		{
+			"modification": "createColumn",
+			"entityName": "TranslationDomain",
+			"field": {
+				"name": "name",
+				"columnName": "name",
+				"columnType": "text",
+				"nullable": false,
+				"type": "String"
+			}
+		},
+		{
+			"modification": "createColumn",
+			"entityName": "TranslationKey",
+			"field": {
+				"name": "identifier",
+				"columnName": "identifier",
+				"columnType": "text",
+				"nullable": false,
+				"type": "String"
+			}
+		},
+		{
+			"modification": "createColumn",
+			"entityName": "TranslationKey",
+			"field": {
+				"name": "contentType",
+				"columnName": "content_type",
+				"columnType": "TranslationContentType",
+				"nullable": false,
+				"type": "Enum"
+			}
+		},
+		{
+			"modification": "createColumn",
+			"entityName": "TranslationKey",
+			"field": {
+				"name": "note",
+				"columnName": "note",
+				"columnType": "text",
+				"nullable": true,
+				"type": "String"
+			}
+		},
+		{
+			"modification": "createColumn",
+			"entityName": "TranslationValue",
+			"field": {
+				"name": "value",
+				"columnName": "value",
+				"columnType": "text",
+				"nullable": false,
+				"type": "String"
+			}
+		},
+		{
+			"modification": "createRelation",
+			"entityName": "TranslationCatalogue",
+			"owningSide": {
+				"type": "ManyHasOne",
+				"name": "domain",
+				"target": "TranslationDomain",
+				"joiningColumn": {
+					"columnName": "domain_id",
+					"onDelete": "cascade"
+				},
+				"nullable": false,
+				"inversedBy": "catalogues"
+			},
+			"inverseSide": {
+				"type": "OneHasMany",
+				"name": "catalogues",
+				"target": "TranslationCatalogue",
+				"ownedBy": "domain"
+			}
+		},
+		{
+			"modification": "createRelation",
+			"entityName": "TranslationCatalogue",
+			"owningSide": {
+				"type": "ManyHasOne",
+				"name": "identifier",
+				"target": "TranslationCataloguesIdentifier",
+				"joiningColumn": {
+					"columnName": "identifier_id",
+					"onDelete": "cascade"
+				},
+				"nullable": false,
+				"inversedBy": "catalogue"
+			},
+			"inverseSide": {
+				"type": "OneHasMany",
+				"name": "catalogue",
+				"target": "TranslationCatalogue",
+				"ownedBy": "identifier"
+			}
+		},
+		{
+			"modification": "createRelation",
+			"entityName": "TranslationCatalogue",
+			"owningSide": {
+				"type": "ManyHasOne",
+				"name": "fallback",
+				"target": "TranslationCatalogue",
+				"joiningColumn": {
+					"columnName": "fallback_id",
+					"onDelete": "set null"
+				},
+				"nullable": true
+			}
+		},
+		{
+			"modification": "createRelation",
+			"entityName": "TranslationKey",
+			"owningSide": {
+				"type": "ManyHasOne",
+				"name": "domain",
+				"target": "TranslationDomain",
+				"joiningColumn": {
+					"columnName": "domain_id",
+					"onDelete": "cascade"
+				},
+				"nullable": false,
+				"inversedBy": "keys"
+			},
+			"inverseSide": {
+				"type": "OneHasMany",
+				"name": "keys",
+				"target": "TranslationKey",
+				"ownedBy": "domain"
+			}
+		},
+		{
+			"modification": "createRelation",
+			"entityName": "TranslationValue",
+			"owningSide": {
+				"type": "ManyHasOne",
+				"name": "catalogue",
+				"target": "TranslationCatalogue",
+				"joiningColumn": {
+					"columnName": "catalogue_id",
+					"onDelete": "cascade"
+				},
+				"nullable": false,
+				"inversedBy": "values"
+			},
+			"inverseSide": {
+				"type": "OneHasMany",
+				"name": "values",
+				"target": "TranslationValue",
+				"ownedBy": "catalogue"
+			}
+		},
+		{
+			"modification": "createRelation",
+			"entityName": "TranslationValue",
+			"owningSide": {
+				"type": "ManyHasOne",
+				"name": "key",
+				"target": "TranslationKey",
+				"joiningColumn": {
+					"columnName": "key_id",
+					"onDelete": "cascade"
+				},
+				"nullable": false,
+				"inversedBy": "values"
+			},
+			"inverseSide": {
+				"type": "OneHasMany",
+				"name": "values",
+				"target": "TranslationValue",
+				"ownedBy": "key"
+			}
+		},
+		{
+			"modification": "createUniqueConstraint",
+			"entityName": "TranslationCatalogue",
+			"unique": {
+				"fields": [
+					"domain",
+					"identifier"
+				],
+				"name": "unique_TranslationCatalogue_domain_identifier_125965"
+			}
+		},
+		{
+			"modification": "createUniqueConstraint",
+			"entityName": "TranslationCataloguesIdentifier",
+			"unique": {
+				"fields": [
+					"code"
+				],
+				"name": "unique_TranslationCataloguesIdentifier_code_2b208e"
+			}
+		},
+		{
+			"modification": "createUniqueConstraint",
+			"entityName": "TranslationDomain",
+			"unique": {
+				"fields": [
+					"identifier"
+				],
+				"name": "unique_TranslationDomain_identifier_36533e"
+			}
+		},
+		{
+			"modification": "createUniqueConstraint",
+			"entityName": "TranslationKey",
+			"unique": {
+				"fields": [
+					"domain",
+					"identifier"
+				],
+				"name": "unique_TranslationKey_domain_identifier_11d362"
+			}
+		},
+		{
+			"modification": "createUniqueConstraint",
+			"entityName": "TranslationValue",
+			"unique": {
+				"fields": [
+					"catalogue",
+					"key"
+				],
+				"name": "unique_TranslationValue_catalogue_key_b4308c"
+			}
+		},
+		{
+			"modification": "patchAclSchema",
+			"patch": [
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/TranslationCatalogue",
+					"value": {
+						"predicates": {},
+						"operations": {
+							"read": {
+								"id": true,
+								"domain": true,
+								"identifier": true,
+								"fallback": true,
+								"values": true
+							},
+							"create": {
+								"id": true,
+								"domain": true,
+								"identifier": true,
+								"fallback": true,
+								"values": true
+							},
+							"update": {
+								"id": true,
+								"domain": true,
+								"identifier": true,
+								"fallback": true,
+								"values": true
+							},
+							"delete": true,
+							"customPrimary": true
+						}
+					}
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/TranslationCataloguesIdentifier",
+					"value": {
+						"predicates": {},
+						"operations": {
+							"read": {
+								"id": true,
+								"catalogue": true,
+								"name": true,
+								"code": true
+							},
+							"create": {
+								"id": true,
+								"catalogue": true,
+								"name": true,
+								"code": true
+							},
+							"update": {
+								"id": true,
+								"catalogue": true,
+								"name": true,
+								"code": true
+							},
+							"delete": true,
+							"customPrimary": true
+						}
+					}
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/TranslationDomain",
+					"value": {
+						"predicates": {},
+						"operations": {
+							"read": {
+								"id": true,
+								"identifier": true,
+								"name": true,
+								"catalogues": true,
+								"keys": true
+							},
+							"create": {
+								"id": true,
+								"identifier": true,
+								"name": true,
+								"catalogues": true,
+								"keys": true
+							},
+							"update": {
+								"id": true,
+								"identifier": true,
+								"name": true,
+								"catalogues": true,
+								"keys": true
+							},
+							"delete": true,
+							"customPrimary": true
+						}
+					}
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/TranslationKey",
+					"value": {
+						"predicates": {},
+						"operations": {
+							"read": {
+								"id": true,
+								"domain": true,
+								"identifier": true,
+								"contentType": true,
+								"note": true,
+								"values": true
+							},
+							"create": {
+								"id": true,
+								"domain": true,
+								"identifier": true,
+								"contentType": true,
+								"note": true,
+								"values": true
+							},
+							"update": {
+								"id": true,
+								"domain": true,
+								"identifier": true,
+								"contentType": true,
+								"note": true,
+								"values": true
+							},
+							"delete": true,
+							"customPrimary": true
+						}
+					}
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/TranslationValue",
+					"value": {
+						"predicates": {},
+						"operations": {
+							"read": {
+								"id": true,
+								"catalogue": true,
+								"key": true,
+								"value": true
+							},
+							"create": {
+								"id": true,
+								"catalogue": true,
+								"key": true,
+								"value": true
+							},
+							"update": {
+								"id": true,
+								"catalogue": true,
+								"key": true,
+								"value": true
+							},
+							"delete": true,
+							"customPrimary": true
+						}
+					}
+				}
+			]
+		}
+	]
+}

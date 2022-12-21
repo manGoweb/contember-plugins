@@ -1,12 +1,9 @@
 import { useAuthedContentQuery } from '@contember/admin'
 
-const CATALOGUES_QUERY = `
-	query($domain: String!, $catalogues: [String!]!) {
+const CATALOGUES_QUERY = /* GraphQL */ `
+	query ($domain: String!, $catalogues: [String!]!) {
 		list: listTranslationCatalogue(
-			filter: {
-				domain: { identifier: { eq: $domain } },
-				identifier: { code: { in: $catalogues } }
-			}
+			filter: { domain: { identifier: { eq: $domain } }, identifier: { code: { in: $catalogues } } }
 		) {
 			identifier {
 				name

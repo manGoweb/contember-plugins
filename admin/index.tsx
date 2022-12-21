@@ -1,6 +1,7 @@
 import { ApplicationEntrypoint, Pages, runReactApp } from '@contember/admin'
 import '@contember/admin/style.css'
 import { Layout } from './components/Layout'
+import './index.sass'
 
 runReactApp(
 	<ApplicationEntrypoint

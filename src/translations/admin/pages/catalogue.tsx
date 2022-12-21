@@ -41,14 +41,13 @@ const TranslationCatalogueForm = Component(
 	'TranslationCatalogueForm',
 )
 
-export const TranslationCatalogueListPage = (
+export const catalogueList = (
 	<TablePage
-		pageName="translationCatalogueList"
 		entities="TranslationCatalogue"
 		orderBy="domain.name asc, identifier.name asc"
 		rendererProps={{
 			title: 'Translation Catalogues',
-			actions: <LinkButton to="translationCatalogueCreate">Add a new translation catalogue</LinkButton>,
+			actions: <LinkButton to="translations/catalogueCreate">Add a new translation catalogue</LinkButton>,
 		}}
 	>
 		<TableCell>
@@ -65,27 +64,25 @@ export const TranslationCatalogueListPage = (
 	</TablePage>
 )
 
-export const TranslationCatalogueCreatePage = (
+export const catalogueCreate = (
 	<CreatePage
-		pageName="translationCatalogueCreate"
 		entity="TranslationCatalogue"
 		rendererProps={{
 			title: 'Add a new translation catalogue',
-			navigation: <NavigateBackButton to="translationCatalogueList">Translation catalogues</NavigateBackButton>,
+			navigation: <NavigateBackButton to="translations/catalogueList">Translation catalogues</NavigateBackButton>,
 		}}
-		redirectOnSuccess={request => ({ ...request, pageName: 'translationCatalogueList' })}
+		redirectOnSuccess={request => ({ ...request, pageName: 'translations/catalogueList' })}
 	>
 		<TranslationCatalogueForm />
 	</CreatePage>
 )
 
-export const TranslationCatalogueEditPage = (
+export const catalogueEdit = (
 	<EditPage
-		pageName="translationCatalogueEdit"
 		entity="TranslationCatalogue(id = $id)"
 		rendererProps={{
 			title: 'Edit translation catalogue',
-			navigation: <NavigateBackButton to="translationCatalogueList">TranslationCatalogues</NavigateBackButton>,
+			navigation: <NavigateBackButton to="translations/catalogueList">TranslationCatalogues</NavigateBackButton>,
 		}}
 	>
 		<TranslationCatalogueForm />

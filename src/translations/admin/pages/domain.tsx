@@ -14,21 +14,20 @@ import {
 const TranslationDomainForm = Component(
 	() => (
 		<Box>
-			<TextField field="identifier" label="Identifier" allowNewlines={false} />
-			<TextField field="name" label="Name" allowNewlines={false} />
+			<TextField field="identifier" label="Identifier" />
+			<TextField field="name" label="Name" />
 		</Box>
 	),
 	'TranslationDomainForm',
 )
 
-export const TranslationDomainListPage = (
+export const domainList = (
 	<TablePage
-		pageName="translationDomainList"
 		entities="TranslationDomain"
 		orderBy="name asc"
 		rendererProps={{
 			title: 'Translation Domains',
-			actions: <LinkButton to="translationDomainCreate">Add a new translation domain</LinkButton>,
+			actions: <LinkButton to="translations/domainCreate">Add a new translation domain</LinkButton>,
 		}}
 	>
 		<TableCell>
@@ -36,32 +35,30 @@ export const TranslationDomainListPage = (
 		</TableCell>
 
 		<TableCell shrunk>
-			<LinkButton to="translationDomainEdit(id: $entity.id)">Edit</LinkButton>
+			<LinkButton to="translations/domainEdit(id: $entity.id)">Edit</LinkButton>
 		</TableCell>
 	</TablePage>
 )
 
-export const TranslationDomainCreatePage = (
+export const domainCreate = (
 	<CreatePage
-		pageName="translationDomainCreate"
 		entity="TranslationDomain"
 		rendererProps={{
 			title: 'Add a new translation domain',
-			navigation: <NavigateBackButton to="translationDomainList">Translation domains</NavigateBackButton>,
+			navigation: <NavigateBackButton to="translations/domainList">Translation domains</NavigateBackButton>,
 		}}
-		redirectOnSuccess={request => ({ ...request, pageName: 'translationDomainList' })}
+		redirectOnSuccess={request => ({ ...request, pageName: 'translations/domainList' })}
 	>
 		<TranslationDomainForm />
 	</CreatePage>
 )
 
-export const TranslationDomainEditPage = (
+export const domainEdit = (
 	<EditPage
-		pageName="translationDomainEdit"
 		entity="TranslationDomain(id = $id)"
 		rendererProps={{
-			title: 'Edit translationDomain',
-			navigation: <NavigateBackButton to="translationDomainList">TranslationDomains</NavigateBackButton>,
+			title: 'Edit translation domain',
+			navigation: <NavigateBackButton to="translations/domainList">TranslationDomains</NavigateBackButton>,
 		}}
 	>
 		<TranslationDomainForm />

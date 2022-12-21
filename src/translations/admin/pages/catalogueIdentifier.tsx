@@ -1,8 +1,7 @@
 import { MultiEditPage, TextField } from '@contember/admin'
 
-export const TranslationCatalogueIdentifierListPage = (
+export const catalogueIdentifierList = (
 	<MultiEditPage
-		pageName="translationCataloguesIdentifierList"
 		entities="TranslationCataloguesIdentifier"
 		orderBy="name asc"
 		rendererProps={{
