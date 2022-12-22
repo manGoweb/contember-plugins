@@ -59,7 +59,7 @@ export const catalogueList = (
 		</TableCell>
 
 		<TableCell shrunk>
-			<LinkButton to="translationCatalogueEdit(id: $entity.id)">Edit</LinkButton>
+			<LinkButton to="translations/catalogueEdit(id: $entity.id)">Edit</LinkButton>
 		</TableCell>
 	</TablePage>
 )
