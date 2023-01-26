@@ -25,7 +25,7 @@ export const ImageField = Component<ImageFieldProps>(props => {
 			fileSizeField="size"
 			fileTypeField="type"
 		>
-			{props.hideAltField ? undefined : <TextField field={altField} label={props.altLabel || 'Alternative text'} />}
+			{props.hideAltField ? undefined : <TextField field={altField} label={props.altLabel ?? 'Alternative text'} />}
 		</ImageUploadField>
 	)
 })
