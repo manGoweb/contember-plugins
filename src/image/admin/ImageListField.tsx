@@ -24,7 +24,7 @@ export const ImageListField = Component<ImageListFieldProps>(
 					widthField="image.width"
 					heightField="image.height"
 					fileSizeField="image.size"
-					/* @TODO: type field */
+					fileTypeField="image.type"
 					sortableBy="order"
 				>
 					{hideAltField ? undefined : <TextField field={altField} label={altLabel ?? 'Alternative text'} />}
