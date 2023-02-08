@@ -1,4 +1,5 @@
 // @TODO: replace main in package.json by exports
+export * from './collapsibleBox/admin'
 export * from './datagrid/admin'
 export * from './deleteEntityButton/admin'
 export * from './discriminatedByBooleanField/admin'
