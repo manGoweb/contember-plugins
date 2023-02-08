@@ -1,5 +1,6 @@
 # Contember plugins
 
+- [collapsibleBox](src/collapsibleBox/README.md)
 - [datagrid](src/datagrid/README.md)
 - [deleteEntityButton](src/deleteEntityButton/README.md)
 - [discriminatedByBooleanField](src/discriminatedByBooleanField/README.md)

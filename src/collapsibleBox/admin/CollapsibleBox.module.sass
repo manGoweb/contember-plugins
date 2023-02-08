@@ -1,0 +1,42 @@
+.button
+    gap: .625rem
+    width: 100%
+    background-color: transparent
+    border: unset
+    outline: unset
+    padding: .3125rem 0
+    font-size: inherit
+    font-family: inherit
+    font-weight: inherit
+    color: inherit
+
+    &:hover, &:focus-visible
+        outline: 1px solid black
+
+    &.is_expanded
+
+        .caret
+            transform: scale(-1)
+
+.header
+    display: flex
+    align-items: center
+    justify-content: space-between
+
+.caret
+    position: relative
+    width: .5rem
+    height: .5rem
+
+    &:before
+        content: ''
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+        border-top: .375rem solid
+        border-left: .375rem solid transparent
+        border-right: .375rem solid transparent
+
+.content
+    margin-top: 1em
