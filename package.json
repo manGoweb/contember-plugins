@@ -18,7 +18,7 @@
 		"build": "npm run clean && npm run build-esm && npm run build-commonjs && npm run copy-sass-to-dist",
 		"build-esm": "tsc",
 		"build-commonjs": "tsc --project tsconfig-commonjs.json && echo { \\\"type\\\": \\\"commonjs\\\" } > dist/commonjs/package.json",
-		"copy-sass-to-dist": "cp src/translations/admin/theme.sass dist/translations/admin/theme.sass && cp src/translations/admin/theme.sass dist/commonjs/translations/admin/theme.sass",
+		"copy-sass-to-dist": "cp src/translations/admin/theme.sass dist/translations/admin/theme.sass && cp src/translations/admin/theme.sass dist/commonjs/translations/admin/theme.sass && cp src/collapsibleBox/admin/CollapsibleBox.module.sass dist/collapsibleBox/admin/CollapsibleBox.module.sass && cp src/collapsibleBox/admin/CollapsibleBox.module.sass dist/commonjs/collapsibleBox/admin/CollapsibleBox.module.sass",
 		"dev": "npm run start-engine && concurrently npm:start-admin npm:watch-src",
 		"watch-src": "tsc --watch",
 		"contember": "docker-compose run --rm contember-cli",
