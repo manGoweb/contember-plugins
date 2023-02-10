@@ -20,6 +20,7 @@ export const ImageField = Component<ImageFieldProps>(props => {
 			baseEntity={props.field}
 			description={props.description}
 			labelDescription={props.labelDescription}
+			fileNameField="fileName"
 			widthField="width"
 			heightField="height"
 			fileSizeField="size"

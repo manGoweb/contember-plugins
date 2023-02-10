@@ -1,0 +1,36 @@
+{
+	"formatVersion": 3,
+	"modifications": [
+		{
+			"modification": "createColumn",
+			"entityName": "Image",
+			"field": {
+				"name": "fileName",
+				"columnName": "file_name",
+				"columnType": "text",
+				"nullable": true,
+				"type": "String"
+			}
+		},
+		{
+			"modification": "patchAclSchema",
+			"patch": [
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/Image/operations/read/fileName",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/Image/operations/create/fileName",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/Image/operations/update/fileName",
+					"value": true
+				}
+			]
+		}
+	]
+}
