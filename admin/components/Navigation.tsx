@@ -1,4 +1,5 @@
 import { Menu } from '@contember/admin'
+import { TenantMenuItem } from '../../src/tenant/admin/TenantMenuItem'
 import { TranslationsMenuItem } from '../../src/translations/admin/components/TranslationsMenuItem'
 
 export const Navigation = () => (
@@ -6,6 +7,7 @@ export const Navigation = () => (
 		<Menu.Item>
 			<Menu.Item title="General" to="general" />
 			<TranslationsMenuItem />
+			<TenantMenuItem />
 		</Menu.Item>
 	</Menu>
 )

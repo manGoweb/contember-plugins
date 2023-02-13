@@ -16,15 +16,15 @@ export const createTenantPages = (
 		},
 	},
 ) => {
-	const ChangePasswordPage = (
-		<GenericPage pageName="tenantChangePassword" key="tenantChangePassword">
+	const tenantChangePassword = (
+		<GenericPage>
 			<ChangePassword />
 		</GenericPage>
 	)
 
 	// query is required, so send a dummy query
-	const UsersManagementPage = (
-		<GenericPage pageName="tenantUsers" key="tenantUsers">
+	const tenantUsers = (
+		<GenericPage>
 			<UsersManagement
 				rolesDataQuery={`
 query {
@@ -40,22 +40,22 @@ query {
 		</GenericPage>
 	)
 
-	const InviteUserPage = (
-		<GenericPage pageName="tenantInviteUser" key="tenantInviteUser">
+	const tenantInviteUser = (
+		<GenericPage>
 			<InviteUserToProject rolesConfig={rolesConfig} />
 		</GenericPage>
 	)
 
-	const EditUserPage = (
+	const tenantEditUser = (
 		<Page name="tenantEditUser">
 			{({ id }: { id: string }) => <EditUserInProject rolesConfig={rolesConfig} identityId={id} />}
 		</Page>
 	)
 
 	return {
-		ChangePasswordPage,
-		UsersManagementPage,
-		InviteUserPage,
-		EditUserPage,
+		tenantChangePassword,
+		tenantUsers,
+		tenantInviteUser,
+		tenantEditUser,
 	}
 }
