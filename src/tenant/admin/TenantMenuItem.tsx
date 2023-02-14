@@ -5,6 +5,6 @@ interface TenantMenutItemProps {
 }
 
 export const TenantMenuItem = Component<TenantMenutItemProps>(
-	({ title }) => <Menu.Item title={title ?? 'Users'} to="tenantUsers" />,
+	({ title }) => <Menu.Item title={title ?? 'Users'} to="tenant/users" />,
 	'TenantMenuItem',
 )

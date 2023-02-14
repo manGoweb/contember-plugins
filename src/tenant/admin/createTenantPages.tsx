@@ -1,12 +1,13 @@
 import {
 	ChangePassword,
-	EditUserInProject,
+	EditUserPage,
 	GenericPage,
-	InviteUserToProject,
-	Page,
+	InviteUserPage,
 	RolesConfig,
-	UsersManagement,
+	useCurrentRequest,
+	UserListPage,
 } from '@contember/admin'
+import { FunctionComponent } from 'react'
 
 export const createTenantPages = (
 	rolesConfig: RolesConfig = {
@@ -16,46 +17,46 @@ export const createTenantPages = (
 		},
 	},
 ) => {
-	const tenantChangePassword = (
+	const changePassword = (
 		<GenericPage>
 			<ChangePassword />
 		</GenericPage>
 	)
 
 	// query is required, so send a dummy query
-	const tenantUsers = (
-		<GenericPage>
-			<UsersManagement
-				rolesDataQuery={`
+	const users = (
+		<UserListPage
+			rolesDataQuery={`
 query {
 	_info {
 		description
 	}
 }
 					`}
-				roleRenderers={{
-					admin: () => <>Administrator</>,
-				}}
-			/>
-		</GenericPage>
+			roleRenderers={{
+				admin: () => <>Administrator</>,
+			}}
+			addUserLink="tenant/invite"
+			editUserLink="tenant/edit(id: $identityId)"
+		/>
 	)
 
-	const tenantInviteUser = (
-		<GenericPage>
-			<InviteUserToProject rolesConfig={rolesConfig} />
-		</GenericPage>
-	)
+	const invite = <InviteUserPage rolesConfig={rolesConfig} userListLink="tenant/users" />
 
-	const tenantEditUser = (
-		<Page name="tenantEditUser">
-			{({ id }: { id: string }) => <EditUserInProject rolesConfig={rolesConfig} identityId={id} />}
-		</Page>
-	)
+	const Edit: FunctionComponent = () => {
+		const id = useCurrentRequest()?.parameters.id
+		if (typeof id !== 'string') {
+			throw new Error('Missing identity id.')
+		}
+		return <EditUserPage identityId={id} rolesConfig={rolesConfig} userListLink="tenant/users" />
+	}
+
+	const edit = <Edit />
 
 	return {
-		tenantChangePassword,
-		tenantUsers,
-		tenantInviteUser,
-		tenantEditUser,
+		changePassword,
+		users,
+		invite,
+		edit,
 	}
 }
