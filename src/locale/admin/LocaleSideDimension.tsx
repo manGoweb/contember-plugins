@@ -1,4 +1,4 @@
-import { Component, SideDimensions, SideDimensionsProps, Variable } from '@contember/admin'
+import { Component, SideDimensions, SideDimensionsProps } from '@contember/admin'
 
 export interface LocaleSideDimensionProps {
 	children: React.ReactNode
@@ -11,18 +11,19 @@ export const LocaleSideDimension = Component<LocaleSideDimensionProps>(
 			dimension="locale"
 			variableName="currentLocaleCode"
 			hasOneField={hasOneField}
-			variables={currentLocaleCode => {
-				const slugPrefix = currentLocaleCode === 'cs' ? '/' : `/${currentLocaleCode}/`
+			// @TODO: uncomment and fix
+			// variables={currentLocaleCode => {
+			// 	const slugPrefix = currentLocaleCode === 'cs' ? '/' : `/${currentLocaleCode}/`
 
-				return {
-					labelMiddleware: label => (
-						<>
-							<Variable name="flag" /> {label}
-						</>
-					),
-					slugPrefix,
-				}
-			}}
+			// 	return {
+			// 		labelMiddleware: label => (
+			// 			<>
+			// 				<Variable name="flag" /> {label}
+			// 			</>
+			// 		),
+			// 		slugPrefix,
+			// 	}
+			// }}
 		>
 			{children}
 		</SideDimensions>

@@ -33,17 +33,17 @@
 		"registry": "https://npm.pkg.github.com"
 	},
 	"peerDependencies": {
-		"@contember/admin": "^1.0.0-rc.27 || ^1.1.0-alpha.5 || ^1.1.0-beta.1 ",
-		"@contember/schema-definition": "^1.1.0-alpha.5 || ^0.12.0-alpha.10 || ^1.0.0-rc.16 || ^1.2.0-alpha.7 || ^1.2.0-alpha.18",
-		"react": "^17 || ^18"
+		"@contember/admin": "^1.1.0-beta.4",
+		"@contember/schema-definition": "^1.2.0-alpha.18",
+		"react": "^18"
 	},
 	"devDependencies": {
-		"@contember/admin": "^1.1.0-alpha.16",
-		"@contember/admin-i18n": "^1.1.0-alpha.16",
-		"@contember/client": "^1.1.0-alpha.16",
+		"@contember/admin": "^1.1.0-beta.4",
+		"@contember/admin-i18n": "^1.1.0-beta.4",
+		"@contember/client": "^1.1.0-beta.4",
 		"@contember/schema": "^1.2.0-alpha.18",
 		"@contember/schema-definition": "^1.2.0-alpha.18",
-		"@types/react": "17.0.42",
+		"@types/react": "^18.0.28",
 		"@typescript-eslint/eslint-plugin": "5.16.0",
 		"@typescript-eslint/parser": "5.16.0",
 		"concurrently": "^7.6.0",
@@ -53,7 +53,7 @@
 		"eslint-plugin-react": "7.29.4",
 		"eslint-plugin-react-hooks": "^4.3.0",
 		"prettier": "2.6.0",
-		"react": "17.0.2",
+		"react": "^18.2.0",
 		"rimraf": "^3.0.2",
 		"sass": "^1.57.1",
 		"typescript": "4.6.2",
