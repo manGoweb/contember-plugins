@@ -1,0 +1,327 @@
+{
+	"formatVersion": 3,
+	"modifications": [
+		{
+			"modification": "createEntity",
+			"entity": {
+				"name": "GenericPage",
+				"primary": "id",
+				"primaryColumn": "id",
+				"tableName": "generic_page",
+				"fields": {
+					"id": {
+						"name": "id",
+						"columnName": "id",
+						"columnType": "uuid",
+						"nullable": false,
+						"type": "Uuid"
+					}
+				},
+				"unique": {},
+				"indexes": {},
+				"eventLog": {
+					"enabled": true
+				}
+			}
+		},
+		{
+			"modification": "createEntity",
+			"entity": {
+				"name": "Linkable",
+				"primary": "id",
+				"primaryColumn": "id",
+				"tableName": "linkable",
+				"fields": {
+					"id": {
+						"name": "id",
+						"columnName": "id",
+						"columnType": "uuid",
+						"nullable": false,
+						"type": "Uuid"
+					}
+				},
+				"unique": {},
+				"indexes": {},
+				"eventLog": {
+					"enabled": true
+				}
+			}
+		},
+		{
+			"modification": "createEntity",
+			"entity": {
+				"name": "Seo",
+				"primary": "id",
+				"primaryColumn": "id",
+				"tableName": "seo",
+				"fields": {
+					"id": {
+						"name": "id",
+						"columnName": "id",
+						"columnType": "uuid",
+						"nullable": false,
+						"type": "Uuid"
+					}
+				},
+				"unique": {},
+				"indexes": {},
+				"eventLog": {
+					"enabled": true
+				}
+			}
+		},
+		{
+			"modification": "createColumn",
+			"entityName": "GenericPage",
+			"field": {
+				"name": "title",
+				"columnName": "title",
+				"columnType": "text",
+				"nullable": true,
+				"type": "String"
+			}
+		},
+		{
+			"modification": "createColumn",
+			"entityName": "Linkable",
+			"field": {
+				"name": "url",
+				"columnName": "url",
+				"columnType": "text",
+				"nullable": false,
+				"type": "String"
+			}
+		},
+		{
+			"modification": "createColumn",
+			"entityName": "Seo",
+			"field": {
+				"name": "title",
+				"columnName": "title",
+				"columnType": "text",
+				"nullable": true,
+				"type": "String"
+			}
+		},
+		{
+			"modification": "createColumn",
+			"entityName": "Seo",
+			"field": {
+				"name": "description",
+				"columnName": "description",
+				"columnType": "text",
+				"nullable": true,
+				"type": "String"
+			}
+		},
+		{
+			"modification": "createColumn",
+			"entityName": "Seo",
+			"field": {
+				"name": "ogTitle",
+				"columnName": "og_title",
+				"columnType": "text",
+				"nullable": true,
+				"type": "String"
+			}
+		},
+		{
+			"modification": "createColumn",
+			"entityName": "Seo",
+			"field": {
+				"name": "ogDescription",
+				"columnName": "og_description",
+				"columnType": "text",
+				"nullable": true,
+				"type": "String"
+			}
+		},
+		{
+			"modification": "createColumn",
+			"entityName": "Seo",
+			"field": {
+				"name": "noIndex",
+				"columnName": "no_index",
+				"columnType": "boolean",
+				"nullable": false,
+				"type": "Bool",
+				"default": false
+			},
+			"fillValue": false
+		},
+		{
+			"modification": "createColumn",
+			"entityName": "Seo",
+			"field": {
+				"name": "noFollow",
+				"columnName": "no_follow",
+				"columnType": "boolean",
+				"nullable": false,
+				"type": "Bool",
+				"default": false
+			},
+			"fillValue": false
+		},
+		{
+			"modification": "createRelation",
+			"entityName": "GenericPage",
+			"owningSide": {
+				"type": "OneHasOne",
+				"name": "seo",
+				"target": "Seo",
+				"joiningColumn": {
+					"columnName": "seo_id",
+					"onDelete": "set null"
+				},
+				"nullable": true
+			}
+		},
+		{
+			"modification": "createRelation",
+			"entityName": "Linkable",
+			"owningSide": {
+				"type": "OneHasOne",
+				"name": "genericPage",
+				"target": "GenericPage",
+				"joiningColumn": {
+					"columnName": "generic_page_id",
+					"onDelete": "cascade"
+				},
+				"nullable": true,
+				"inversedBy": "link"
+			},
+			"inverseSide": {
+				"type": "OneHasOne",
+				"name": "link",
+				"target": "Linkable",
+				"ownedBy": "genericPage",
+				"nullable": false
+			}
+		},
+		{
+			"modification": "createRelation",
+			"entityName": "Seo",
+			"owningSide": {
+				"type": "OneHasOne",
+				"name": "ogImage",
+				"target": "Image",
+				"joiningColumn": {
+					"columnName": "og_image_id",
+					"onDelete": "cascade"
+				},
+				"nullable": true
+			}
+		},
+		{
+			"modification": "createUniqueConstraint",
+			"entityName": "Linkable",
+			"unique": {
+				"fields": [
+					"url"
+				],
+				"name": "unique_Linkable_url_f92092"
+			}
+		},
+		{
+			"modification": "patchAclSchema",
+			"patch": [
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/GenericPage",
+					"value": {
+						"predicates": {},
+						"operations": {
+							"read": {
+								"id": true,
+								"link": true,
+								"title": true,
+								"seo": true
+							},
+							"create": {
+								"id": true,
+								"link": true,
+								"title": true,
+								"seo": true
+							},
+							"update": {
+								"id": true,
+								"link": true,
+								"title": true,
+								"seo": true
+							},
+							"delete": true,
+							"customPrimary": true
+						}
+					}
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/Linkable",
+					"value": {
+						"predicates": {},
+						"operations": {
+							"read": {
+								"id": true,
+								"url": true,
+								"genericPage": true
+							},
+							"create": {
+								"id": true,
+								"url": true,
+								"genericPage": true
+							},
+							"update": {
+								"id": true,
+								"url": true,
+								"genericPage": true
+							},
+							"delete": true,
+							"customPrimary": true
+						}
+					}
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/Seo",
+					"value": {
+						"predicates": {},
+						"operations": {
+							"read": {
+								"id": true,
+								"title": true,
+								"description": true,
+								"ogTitle": true,
+								"ogDescription": true,
+								"ogImage": true,
+								"noIndex": true,
+								"noFollow": true
+							},
+							"create": {
+								"id": true,
+								"title": true,
+								"description": true,
+								"ogTitle": true,
+								"ogDescription": true,
+								"ogImage": true,
+								"noIndex": true,
+								"noFollow": true
+							},
+							"update": {
+								"id": true,
+								"title": true,
+								"description": true,
+								"ogTitle": true,
+								"ogDescription": true,
+								"ogImage": true,
+								"noIndex": true,
+								"noFollow": true
+							},
+							"delete": true,
+							"customPrimary": true
+						}
+					}
+				}
+			]
+		}
+	]
+}
