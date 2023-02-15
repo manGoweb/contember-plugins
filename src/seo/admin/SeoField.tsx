@@ -17,10 +17,6 @@ export interface SeoFieldProps {
 	field: string
 	titleDerivedFrom?: DerivedFieldLinkProps['derivedField']
 	descriptionDerivedFrom?: DerivedFieldLinkProps['derivedField']
-	options?: {
-		isNoIndex?: boolean
-		isNoFollow?: boolean
-	}
 }
 
 const defaultSeoDictionary = {
@@ -97,7 +93,7 @@ export const seoDictionary = {
 }
 
 export const SeoField = Component<SeoFieldProps>(
-	({ titleDerivedFrom, descriptionDerivedFrom, field, options }) => {
+	({ titleDerivedFrom, descriptionDerivedFrom, field }) => {
 		const formatter = useMessageFormatter<SeoDictionary>(defaultSeoDictionary)
 
 		return (
@@ -125,24 +121,18 @@ export const SeoField = Component<SeoFieldProps>(
 						label={formatter('seo.ogImage.label')}
 						description={formatter('seo.ogImage.description')}
 					/>
-					{options && (
-						<Box heading={formatter('seo.robots.heading')}>
-							{options.isNoIndex && (
-								<CheckboxField
-									field="noIndex"
-									label={formatter('seo.noIndex.label')}
-									labelDescription={formatter('seo.noIndex.description')}
-								/>
-							)}
-							{options.isNoFollow && (
-								<CheckboxField
-									field="noFollow"
-									label={formatter('seo.noFollow.label')}
-									labelDescription={formatter('seo.noFollow.description')}
-								/>
-							)}
-						</Box>
-					)}
+					<Box heading={formatter('seo.robots.heading')}>
+						<CheckboxField
+							field="noIndex"
+							label={formatter('seo.noIndex.label')}
+							labelDescription={formatter('seo.noIndex.description')}
+						/>
+						<CheckboxField
+							field="noFollow"
+							label={formatter('seo.noFollow.label')}
+							labelDescription={formatter('seo.noFollow.description')}
+						/>
+					</Box>
 				</HasOne>
 			</Box>
 		)
