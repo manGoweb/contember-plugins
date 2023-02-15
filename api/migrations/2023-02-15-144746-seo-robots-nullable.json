@@ -1,0 +1,27 @@
+{
+	"formatVersion": 3,
+	"modifications": [
+		{
+			"modification": "updateColumnDefinition",
+			"entityName": "Seo",
+			"fieldName": "noIndex",
+			"definition": {
+				"columnType": "boolean",
+				"nullable": true,
+				"type": "Bool",
+				"default": false
+			}
+		},
+		{
+			"modification": "updateColumnDefinition",
+			"entityName": "Seo",
+			"fieldName": "noFollow",
+			"definition": {
+				"columnType": "boolean",
+				"nullable": true,
+				"type": "Bool",
+				"default": false
+			}
+		}
+	]
+}

@@ -126,11 +126,13 @@ export const SeoField = Component<SeoFieldProps>(
 							field="noIndex"
 							label={formatter('seo.noIndex.label')}
 							labelDescription={formatter('seo.noIndex.description')}
+							notNull
 						/>
 						<CheckboxField
 							field="noFollow"
 							label={formatter('seo.noFollow.label')}
 							labelDescription={formatter('seo.noFollow.description')}
+							notNull
 						/>
 					</Box>
 				</HasOne>
