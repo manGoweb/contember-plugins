@@ -6,6 +6,7 @@ export const Navigation = () => (
 	<Menu>
 		<Menu.Item>
 			<Menu.Item title="General" to="general" />
+			<Menu.Item title="Generic pages" to="genericPage/list" />
 			<TranslationsMenuItem />
 			<TenantMenuItem />
 		</Menu.Item>
