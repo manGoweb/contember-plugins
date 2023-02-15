@@ -6,6 +6,7 @@ import {
 	DerivedFieldLinkProps,
 	Field,
 	HasOne,
+	Stack,
 	TextareaField,
 	TextField,
 	useMessageFormatter,
@@ -109,10 +110,16 @@ export const SeoField = Component<SeoFieldProps>(
 					</>
 				)}
 				<HasOne field={field}>
-					<TextField field="title" label={formatter('seo.title.label')} />
-					<TextareaField field="description" label={formatter('seo.description.label')} />
-					<TextField field="ogTitle" label={formatter('seo.ogTitle.label')} />
-					<TextareaField field="ogDescription" label={formatter('seo.ogDescription.label')} />
+					<Stack direction="horizontal">
+						<Stack direction="vertical">
+							<TextField field="title" label={formatter('seo.title.label')} />
+							<TextareaField field="description" label={formatter('seo.description.label')} />
+						</Stack>
+						<Stack direction="vertical">
+							<TextField field="ogTitle" label={formatter('seo.ogTitle.label')} />
+							<TextareaField field="ogDescription" label={formatter('seo.ogDescription.label')} />
+						</Stack>
+					</Stack>
 					<ImageField
 						field="ogImage"
 						label={formatter('seo.ogImage.label')}
