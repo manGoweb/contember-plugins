@@ -50,6 +50,9 @@ const defaultSeoDictionary = {
 			description:
 				'It tells a search engine that even though it can crawl the page, it cannot add the page into its search index.',
 		},
+		robots: {
+			heading: 'Robots',
+		},
 	},
 }
 type SeoDictionary = typeof defaultSeoDictionary
@@ -81,6 +84,9 @@ const csCZSeoDictionary: SeoDictionary = {
 			label: 'No index',
 			description: 'Informuje vyhledávače, aby neindexovaly konkrétní webovou stránku.',
 		},
+		robots: {
+			heading: 'Roboti',
+		},
 	},
 }
 
@@ -90,33 +96,19 @@ export const seoDictionary = {
 }
 
 export const SeoField = Component<SeoFieldProps>(
-	props => {
+	({ titleDerivedFrom, descriptionDerivedFrom, field, options }) => {
 		const formatter = useMessageFormatter<SeoDictionary>(defaultSeoDictionary)
 
 		return (
 			<Box heading={formatter('seo.heading')}>
-				{props.titleDerivedFrom && <DerivedFieldLink sourceField={props.titleDerivedFrom} derivedField="seo.title" />}
-				{props.descriptionDerivedFrom && (
+				{titleDerivedFrom && <DerivedFieldLink sourceField={titleDerivedFrom} derivedField="seo.title" />}
+				{descriptionDerivedFrom && (
 					<>
-						<DerivedFieldLink sourceField={props.descriptionDerivedFrom} derivedField="seo.description" />
-						<DerivedFieldLink sourceField={props.descriptionDerivedFrom} derivedField="seo.ogDescription" />
+						<DerivedFieldLink sourceField={descriptionDerivedFrom} derivedField="seo.description" />
+						<DerivedFieldLink sourceField={descriptionDerivedFrom} derivedField="seo.ogDescription" />
 					</>
 				)}
-				<HasOne field={props.field}>
-					{props.options?.isNoIndex && (
-						<CheckboxField
-							field="noIndex"
-							label={formatter('seo.noIndex.label')}
-							labelDescription={formatter('seo.noIndex.description')}
-						/>
-					)}
-					{props.options?.isNoFollow && (
-						<CheckboxField
-							field="noFollow"
-							label={formatter('seo.noFollow.label')}
-							labelDescription={formatter('seo.noFollow.description')}
-						/>
-					)}
+				<HasOne field={field}>
 					<TextField field="title" label={formatter('seo.title.label')} />
 					<TextareaField field="description" label={formatter('seo.description.label')} />
 					<TextField field="ogTitle" label={formatter('seo.ogTitle.label')} />
@@ -126,6 +118,24 @@ export const SeoField = Component<SeoFieldProps>(
 						label={formatter('seo.ogImage.label')}
 						description={formatter('seo.ogImage.description')}
 					/>
+					{options && (
+						<Box heading={formatter('seo.robots.heading')}>
+							{options.isNoIndex && (
+								<CheckboxField
+									field="noIndex"
+									label={formatter('seo.noIndex.label')}
+									labelDescription={formatter('seo.noIndex.description')}
+								/>
+							)}
+							{options.isNoFollow && (
+								<CheckboxField
+									field="noFollow"
+									label={formatter('seo.noFollow.label')}
+									labelDescription={formatter('seo.noFollow.description')}
+								/>
+							)}
+						</Box>
+					)}
 				</HasOne>
 			</Box>
 		)
