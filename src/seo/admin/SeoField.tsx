@@ -5,6 +5,7 @@ import {
 	DerivedFieldLink,
 	DerivedFieldLinkProps,
 	Field,
+	FieldContainer,
 	HasOne,
 	Stack,
 	TextareaField,
@@ -17,6 +18,7 @@ export interface SeoFieldProps {
 	field: string
 	titleDerivedFrom?: DerivedFieldLinkProps['derivedField']
 	descriptionDerivedFrom?: DerivedFieldLinkProps['derivedField']
+	compact?: boolean
 }
 
 const defaultSeoDictionary = {
@@ -93,7 +95,7 @@ export const seoDictionary = {
 }
 
 export const SeoField = Component<SeoFieldProps>(
-	({ titleDerivedFrom, descriptionDerivedFrom, field }) => {
+	({ titleDerivedFrom, descriptionDerivedFrom, field, compact = true }) => {
 		const formatter = useMessageFormatter<SeoDictionary>(defaultSeoDictionary)
 
 		return (
@@ -106,7 +108,7 @@ export const SeoField = Component<SeoFieldProps>(
 					</>
 				)}
 				<HasOne field={field}>
-					<Stack direction="horizontal">
+					<Stack direction={compact ? 'horizontal' : 'vertical'}>
 						<Stack direction="vertical">
 							<TextField field="title" label={formatter('seo.title.label')} />
 							<TextareaField field="description" label={formatter('seo.description.label')} />
@@ -116,25 +118,29 @@ export const SeoField = Component<SeoFieldProps>(
 							<TextareaField field="ogDescription" label={formatter('seo.ogDescription.label')} />
 						</Stack>
 					</Stack>
-					<ImageField
-						field="ogImage"
-						label={formatter('seo.ogImage.label')}
-						description={formatter('seo.ogImage.description')}
-					/>
-					<Box heading={formatter('seo.robots.heading')}>
-						<CheckboxField
-							field="noIndex"
-							label={formatter('seo.noIndex.label')}
-							labelDescription={formatter('seo.noIndex.description')}
-							notNull
+					<Stack direction={compact ? 'horizontal-reverse' : 'vertical'}>
+						<ImageField
+							field="ogImage"
+							label={formatter('seo.ogImage.label')}
+							description={formatter('seo.ogImage.description')}
 						/>
-						<CheckboxField
-							field="noFollow"
-							label={formatter('seo.noFollow.label')}
-							labelDescription={formatter('seo.noFollow.description')}
-							notNull
-						/>
-					</Box>
+						<FieldContainer label={formatter('seo.robots.heading')}>
+							<Box heading={undefined}>
+								<CheckboxField
+									field="noIndex"
+									label={formatter('seo.noIndex.label')}
+									labelDescription={formatter('seo.noIndex.description')}
+									notNull
+								/>
+								<CheckboxField
+									field="noFollow"
+									label={formatter('seo.noFollow.label')}
+									labelDescription={formatter('seo.noFollow.description')}
+									notNull
+								/>
+							</Box>
+						</FieldContainer>
+					</Stack>
 				</HasOne>
 			</Box>
 		)
