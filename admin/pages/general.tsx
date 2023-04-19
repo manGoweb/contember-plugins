@@ -13,7 +13,7 @@ export default () => (
 		}}
 	>
 		<TextField field="text" label="Text" />
-		<LinkField field="homePage" label="Link to home" allowDisconnect />
+		<LinkField field="homePage" label="Link to home" allowDisconnect titleField={false} />
 		<LinkField field="privacyPolicyPage" label="Link to another" allowTargetBlank allowDisconnect />
 
 		<CollapsibleBox heading="Images">

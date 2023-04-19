@@ -24,8 +24,18 @@ export interface LinkFieldProps {
 	compact?: boolean
 }
 
+const titleFieldDefaultValue = true
+const allowTargetBlankDefaultValue = false
+
 export const LinkField = Component<LinkFieldProps>(
-	({ field, label, titleField = true, allowDisconnect = false, allowTargetBlank = false, compact = true }) => {
+	({
+		field,
+		label,
+		titleField = titleFieldDefaultValue,
+		allowDisconnect = false,
+		allowTargetBlank = allowTargetBlankDefaultValue,
+		compact = true,
+	}) => {
 		const rootEntity = useEntity()
 
 		const insideContent = (
@@ -84,11 +94,11 @@ export const LinkField = Component<LinkFieldProps>(
 
 		return content
 	},
-	({ field }) => (
+	({ field, titleField = titleFieldDefaultValue, allowTargetBlank = allowTargetBlankDefaultValue }) => (
 		<HasOne field={field}>
 			<Field field="type" />
-			<Field field="title" />
-			<Field field="isTargetBlank" />
+			{titleField && <Field field="title" />}
+			{allowTargetBlank && <Field field="isTargetBlank" />}
 			<SelectField field="internalLink" label={undefined} options="Linkable.url" />
 			<Field field="externalLink" />
 		</HasOne>
