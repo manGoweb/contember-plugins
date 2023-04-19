@@ -1,0 +1,39 @@
+{
+	"formatVersion": 3,
+	"modifications": [
+		{
+			"modification": "createRelation",
+			"entityName": "General",
+			"owningSide": {
+				"type": "OneHasOne",
+				"name": "homePage",
+				"target": "Link",
+				"joiningColumn": {
+					"columnName": "home_page_id",
+					"onDelete": "set null"
+				},
+				"nullable": true
+			}
+		},
+		{
+			"modification": "patchAclSchema",
+			"patch": [
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/General/operations/read/homePage",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/General/operations/create/homePage",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/General/operations/update/homePage",
+					"value": true
+				}
+			]
+		}
+	]
+}

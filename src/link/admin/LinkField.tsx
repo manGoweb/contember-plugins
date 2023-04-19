@@ -2,6 +2,7 @@ import {
 	ActionableBox,
 	Block,
 	Box,
+	CheckboxField,
 	Component,
 	DiscriminatedBlocks,
 	Field,
@@ -16,10 +17,11 @@ export interface LinkFieldProps {
 	label?: string
 	titleField?: boolean
 	allowDisconnect?: boolean
+	allowTargetBlank?: boolean
 }
 
 export const LinkField = Component<LinkFieldProps>(
-	({ field, label, titleField = true, allowDisconnect = false }) => {
+	({ field, label, titleField = true, allowDisconnect = false, allowTargetBlank = false }) => {
 		const rootEntity = useEntity()
 
 		const insideContent = (
@@ -33,6 +35,25 @@ export const LinkField = Component<LinkFieldProps>(
 						<TextField field="externalLink" label="URL" />
 					</Block>
 				</DiscriminatedBlocks>
+				{allowTargetBlank && (
+					<CheckboxField
+						field="isTargetBlank"
+						label="Target blank"
+						defaultValue={false}
+						labelDescription={
+							<>
+								Force link to open in new tab.{' '}
+								<span style={{ color: 'red' }}>
+									This feature is highly discouraged.{' '}
+									<a href="https://css-tricks.com/use-target_blank/" target="_blank" rel="noreferrer">
+										Read more
+									</a>
+									.
+								</span>
+							</>
+						}
+					/>
+				)}
 			</HasOne>
 		)
 
@@ -44,10 +65,11 @@ export const LinkField = Component<LinkFieldProps>(
 
 		return content
 	},
-	({ field, titleField = true }) => (
+	({ field }) => (
 		<HasOne field={field}>
 			<Field field="type" />
-			{titleField && <Field field="title" />}
+			<Field field="title" />
+			<Field field="isTargetBlank" />
 			<SelectField field="internalLink" label={undefined} options="Linkable.url" />
 			<Field field="externalLink" />
 		</HasOne>

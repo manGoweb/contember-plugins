@@ -12,6 +12,7 @@ export class General {
 	singleImage = d.oneHasOne(Image).setNullOnDelete()
 	imageList = d.oneHasOne(ImageList).setNullOnDelete()
 
+	homePage = d.oneHasOne(Link).setNullOnDelete()
 	privacyPolicyPage = d.oneHasOne(Link).setNullOnDelete()
 
 	singleYoutubeVideo = d.oneHasOne(YoutubeVideo).setNullOnDelete()
