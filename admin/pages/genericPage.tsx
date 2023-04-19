@@ -32,14 +32,7 @@ const Form = Component(() => (
 	<>
 		<TextField field="title" label="Title" />
 		<SlugField label="URL" field="link.url" derivedFrom="title" persistedHardPrefix="/" />
-		<SeoField
-			field="seo"
-			titleDerivedFrom="title"
-			options={{
-				isNoIndex: true,
-				isNoFollow: true,
-			}}
-		/>
+		<SeoField field="seo" titleDerivedFrom="title" compact={false} />
 	</>
 ))
 
