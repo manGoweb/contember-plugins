@@ -1,0 +1,165 @@
+{
+	"formatVersion": 3,
+	"modifications": [
+		{
+			"modification": "createEnum",
+			"enumName": "LinkType",
+			"values": [
+				"internal",
+				"external"
+			]
+		},
+		{
+			"modification": "createEntity",
+			"entity": {
+				"name": "Link",
+				"primary": "id",
+				"primaryColumn": "id",
+				"tableName": "link",
+				"fields": {
+					"id": {
+						"name": "id",
+						"columnName": "id",
+						"columnType": "uuid",
+						"nullable": false,
+						"type": "Uuid"
+					}
+				},
+				"unique": {},
+				"indexes": {},
+				"eventLog": {
+					"enabled": true
+				}
+			}
+		},
+		{
+			"modification": "createColumn",
+			"entityName": "Link",
+			"field": {
+				"name": "type",
+				"columnName": "type",
+				"columnType": "LinkType",
+				"nullable": false,
+				"type": "Enum"
+			}
+		},
+		{
+			"modification": "createColumn",
+			"entityName": "Link",
+			"field": {
+				"name": "title",
+				"columnName": "title",
+				"columnType": "text",
+				"nullable": true,
+				"type": "String"
+			}
+		},
+		{
+			"modification": "createColumn",
+			"entityName": "Link",
+			"field": {
+				"name": "isTargetBlank",
+				"columnName": "is_target_blank",
+				"columnType": "boolean",
+				"nullable": false,
+				"type": "Bool",
+				"default": false
+			},
+			"fillValue": false
+		},
+		{
+			"modification": "createColumn",
+			"entityName": "Link",
+			"field": {
+				"name": "externalLink",
+				"columnName": "external_link",
+				"columnType": "text",
+				"nullable": true,
+				"type": "String"
+			}
+		},
+		{
+			"modification": "createRelation",
+			"entityName": "General",
+			"owningSide": {
+				"type": "OneHasOne",
+				"name": "privacyPolicyPage",
+				"target": "Link",
+				"joiningColumn": {
+					"columnName": "privacy_policy_page_id",
+					"onDelete": "set null"
+				},
+				"nullable": true
+			}
+		},
+		{
+			"modification": "createRelation",
+			"entityName": "Link",
+			"owningSide": {
+				"type": "ManyHasOne",
+				"name": "internalLink",
+				"target": "Linkable",
+				"joiningColumn": {
+					"columnName": "internal_link_id",
+					"onDelete": "set null"
+				},
+				"nullable": true
+			}
+		},
+		{
+			"modification": "patchAclSchema",
+			"patch": [
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/Link",
+					"value": {
+						"predicates": {},
+						"operations": {
+							"read": {
+								"id": true,
+								"type": true,
+								"title": true,
+								"isTargetBlank": true,
+								"externalLink": true,
+								"internalLink": true
+							},
+							"create": {
+								"id": true,
+								"type": true,
+								"title": true,
+								"isTargetBlank": true,
+								"externalLink": true,
+								"internalLink": true
+							},
+							"update": {
+								"id": true,
+								"type": true,
+								"title": true,
+								"isTargetBlank": true,
+								"externalLink": true,
+								"internalLink": true
+							},
+							"delete": true,
+							"customPrimary": true
+						}
+					}
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/General/operations/read/privacyPolicyPage",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/General/operations/create/privacyPolicyPage",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/General/operations/update/privacyPolicyPage",
+					"value": true
+				}
+			]
+		}
+	]
+}

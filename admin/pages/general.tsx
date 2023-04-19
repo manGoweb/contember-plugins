@@ -1,4 +1,5 @@
 import { EditPage, TextField } from '@contember/admin'
+import { LinkField } from '../../src'
 import { CollapsibleBox } from '../../src/collapsibleBox/admin'
 import { ImageField, ImageListField } from '../../src/image/admin'
 import { YoutubeVideoField, YoutubeVideoListField } from '../../src/youtube/admin'
@@ -12,6 +13,7 @@ export default () => (
 		}}
 	>
 		<TextField field="text" label="Text" />
+		<LinkField field="privacyPolicyPage" label="Link to another" />
 
 		<CollapsibleBox heading="Images">
 			<ImageField field="singleImage" label="Single image" />
