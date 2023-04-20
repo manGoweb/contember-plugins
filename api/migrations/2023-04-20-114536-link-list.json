@@ -1,0 +1,193 @@
+{
+	"formatVersion": 3,
+	"modifications": [
+		{
+			"modification": "createEntity",
+			"entity": {
+				"name": "LinkList",
+				"primary": "id",
+				"primaryColumn": "id",
+				"tableName": "link_list",
+				"fields": {
+					"id": {
+						"name": "id",
+						"columnName": "id",
+						"columnType": "uuid",
+						"nullable": false,
+						"type": "Uuid"
+					}
+				},
+				"unique": {},
+				"indexes": {},
+				"eventLog": {
+					"enabled": true
+				}
+			}
+		},
+		{
+			"modification": "createEntity",
+			"entity": {
+				"name": "LinkListItem",
+				"primary": "id",
+				"primaryColumn": "id",
+				"tableName": "link_list_item",
+				"fields": {
+					"id": {
+						"name": "id",
+						"columnName": "id",
+						"columnType": "uuid",
+						"nullable": false,
+						"type": "Uuid"
+					}
+				},
+				"unique": {},
+				"indexes": {},
+				"eventLog": {
+					"enabled": true
+				}
+			}
+		},
+		{
+			"modification": "createColumn",
+			"entityName": "LinkListItem",
+			"field": {
+				"name": "order",
+				"columnName": "order",
+				"columnType": "integer",
+				"nullable": false,
+				"type": "Integer",
+				"default": 0
+			},
+			"fillValue": 0
+		},
+		{
+			"modification": "createRelation",
+			"entityName": "General",
+			"owningSide": {
+				"type": "OneHasOne",
+				"name": "linkList",
+				"target": "LinkList",
+				"joiningColumn": {
+					"columnName": "link_list_id",
+					"onDelete": "set null"
+				},
+				"nullable": true
+			}
+		},
+		{
+			"modification": "createRelation",
+			"entityName": "LinkListItem",
+			"owningSide": {
+				"type": "ManyHasOne",
+				"name": "list",
+				"target": "LinkList",
+				"joiningColumn": {
+					"columnName": "list_id",
+					"onDelete": "cascade"
+				},
+				"nullable": false,
+				"inversedBy": "items"
+			},
+			"inverseSide": {
+				"type": "OneHasMany",
+				"name": "items",
+				"target": "LinkListItem",
+				"ownedBy": "list",
+				"orderBy": [
+					{
+						"path": [
+							"order"
+						],
+						"direction": "asc"
+					}
+				]
+			}
+		},
+		{
+			"modification": "createRelation",
+			"entityName": "LinkListItem",
+			"owningSide": {
+				"type": "OneHasOne",
+				"name": "link",
+				"target": "Link",
+				"joiningColumn": {
+					"columnName": "link_id",
+					"onDelete": "set null"
+				},
+				"nullable": true
+			}
+		},
+		{
+			"modification": "patchAclSchema",
+			"patch": [
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/LinkList",
+					"value": {
+						"predicates": {},
+						"operations": {
+							"read": {
+								"id": true,
+								"items": true
+							},
+							"create": {
+								"id": true,
+								"items": true
+							},
+							"update": {
+								"id": true,
+								"items": true
+							},
+							"delete": true,
+							"customPrimary": true
+						}
+					}
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/LinkListItem",
+					"value": {
+						"predicates": {},
+						"operations": {
+							"read": {
+								"id": true,
+								"list": true,
+								"order": true,
+								"link": true
+							},
+							"create": {
+								"id": true,
+								"list": true,
+								"order": true,
+								"link": true
+							},
+							"update": {
+								"id": true,
+								"list": true,
+								"order": true,
+								"link": true
+							},
+							"delete": true,
+							"customPrimary": true
+						}
+					}
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/General/operations/read/linkList",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/General/operations/create/linkList",
+					"value": true
+				},
+				{
+					"op": "add",
+					"path": "/roles/admin/entities/General/operations/update/linkList",
+					"value": true
+				}
+			]
+		}
+	]
+}
