@@ -8,6 +8,7 @@ import {
 	Field,
 	FieldView,
 	HasOne,
+	Message,
 	SelectField,
 	Stack,
 	TextField,
@@ -71,13 +72,13 @@ export const LinkField = Component<LinkFieldProps>(
 											{field.value && (
 												<>
 													{' '}
-													<span style={{ color: 'red' }}>
+													<Message intent="danger">
 														This feature is highly discouraged.{' '}
 														<a href="https://css-tricks.com/use-target_blank/" target="_blank" rel="noreferrer">
 															Read more
 														</a>
 														.
-													</span>
+													</Message>
 												</>
 											)}
 										</>
