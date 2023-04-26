@@ -44,10 +44,14 @@ export const LinkField = Component<LinkFieldProps>(
 				<Stack direction={compact ? 'horizontal' : 'vertical'}>
 					<DiscriminatedBlocks field="type" label="Type">
 						<Block discriminateBy="internal" label="Internal">
-							<SelectField field="internalLink" label="URL" options="Linkable.url" />
+							<div style={{ flexGrow: 1 }}>
+								<SelectField field="internalLink" label="URL" options="Linkable.url" />
+							</div>
 						</Block>
 						<Block discriminateBy="external" label="External">
-							<TextField field="externalLink" label="URL" />
+							<div style={{ flexGrow: 1 }}>
+								<TextField field="externalLink" label="URL" />
+							</div>
 						</Block>
 					</DiscriminatedBlocks>
 				</Stack>
