@@ -6,6 +6,7 @@
 		"dist"
 	],
 	"type": "module",
+	"main": "dist/index.js",
 	"module": "dist/index.js",
 	"scripts": {
 		"test": "npm run eslint:lint",
