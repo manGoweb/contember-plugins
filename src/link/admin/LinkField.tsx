@@ -72,8 +72,8 @@ export const LinkField = Component<LinkFieldProps>(
 											{field.value && (
 												<>
 													{' '}
-													<Message intent="danger">
-														This feature is highly discouraged.{' '}
+													<Message intent="secondary">
+														This feature is discouraged.{' '}
 														<a href="https://css-tricks.com/use-target_blank/" target="_blank" rel="noreferrer">
 															Read more
 														</a>
